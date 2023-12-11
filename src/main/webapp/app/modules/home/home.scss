@@ -4,7 +4,20 @@ Main page styles
 .hipster {
   display: inline-block;
   width: 100%;
-  height: 497px;
-  background: url('/content/images/jhipster_family_member_1.svg') no-repeat center top;
-  background-size: contain;
+  height: 100%;
+  background-image: url('ensaj.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home {
+  width: 100vw;
+  height: 120vh;
+  z-index: 100;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

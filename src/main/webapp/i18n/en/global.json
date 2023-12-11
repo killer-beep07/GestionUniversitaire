@@ -151,5 +151,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "This is your footer"
+  "footer": "<i style=\"font-size:24px\" class=\"fa\">&#xf1f9;</i><i class=\"fa fa-copyright\" style=\"font-size:24px\">copy</i>"
 }

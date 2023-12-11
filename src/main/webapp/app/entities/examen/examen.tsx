@@ -15,6 +15,7 @@ import { hasAnyAuthority } from 'app/shared/auth/private-route';
 export const Examen = () => {
   const dispatch = useAppDispatch();
   const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
+  console.log(isAdmin);
   const pageLocation = useLocation();
   const navigate = useNavigate();
 

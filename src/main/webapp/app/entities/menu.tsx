@@ -5,11 +5,10 @@ import MenuItem from 'app/shared/layout/menus/menu-item';
 import { useAppSelector } from 'app/config/store';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import { AUTHORITIES } from 'app/config/constants';
-// const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
-const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
 
-console.log(isAdmin);
 const EntitiesMenu = () => {
+  const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
+  // console.log(isAdmin);
   return (
     <>
       {/* prettier-ignore */}
@@ -19,20 +18,21 @@ const EntitiesMenu = () => {
           <MenuItem icon="asterisk" to="/etudiant">
             <Translate contentKey="global.menu.entities.etudiant" />
           </MenuItem>
+
+          <MenuItem icon="asterisk" to="/niveau">
+            <Translate contentKey="global.menu.entities.niveau" />
+          </MenuItem>
+          <MenuItem icon="asterisk" to="/filiere">
+            <Translate contentKey="global.menu.entities.filiere" />
+          </MenuItem>
+          <MenuItem icon="asterisk" to="/groupe">
+            <Translate contentKey="global.menu.entities.groupe" />
+          </MenuItem>
+          <MenuItem icon="asterisk" to="/salle-examen">
+            <Translate contentKey="global.menu.entities.salleExamen" />
+          </MenuItem>
         </>
       )}
-      <MenuItem icon="asterisk" to="/niveau">
-        <Translate contentKey="global.menu.entities.niveau" />
-      </MenuItem>
-      <MenuItem icon="asterisk" to="/filiere">
-        <Translate contentKey="global.menu.entities.filiere" />
-      </MenuItem>
-      <MenuItem icon="asterisk" to="/groupe">
-        <Translate contentKey="global.menu.entities.groupe" />
-      </MenuItem>
-      <MenuItem icon="asterisk" to="/salle-examen">
-        <Translate contentKey="global.menu.entities.salleExamen" />
-      </MenuItem>
       <MenuItem icon="asterisk" to="/examen">
         <Translate contentKey="global.menu.entities.examen" />
       </MenuItem>

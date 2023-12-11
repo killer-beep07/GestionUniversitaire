@@ -10,7 +10,7 @@ import EtudiantDeleteDialog from './etudiant-delete-dialog';
 import { useAppSelector } from 'app/config/store';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import { AUTHORITIES } from 'app/config/constants';
-// const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
+
 const EtudiantRoutes = () => (
   <ErrorBoundaryRoutes>
     <Route index element={<Etudiant />} />
@@ -24,8 +24,3 @@ const EtudiantRoutes = () => (
 );
 
 export default EtudiantRoutes;
-
-{
-  /* </>
-    )} */
-}
