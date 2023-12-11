@@ -1,0 +1,28 @@
+{
+  "gestionUniversitaireApp": {
+    "salleExamen": {
+      "home": {
+        "title": "Salle Examen",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Salle Examen",
+        "createOrEditLabel": "Create or edit a Salle Examen",
+        "notFound": "No Salle Examen found"
+      },
+      "created": "A new Salle Examen is created with identifier {{ param }}",
+      "updated": "A Salle Examen is updated with identifier {{ param }}",
+      "deleted": "A Salle Examen is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Salle Examen {{ id }}?"
+      },
+      "detail": {
+        "title": "Salle Examen"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "capacite": "Capacite",
+      "disponibilite": "Disponibilite",
+      "localisation": "Localisation",
+      "examen": "Examen"
+    }
+  }
+}

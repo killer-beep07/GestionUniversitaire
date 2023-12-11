@@ -1,0 +1,59 @@
+entity Etudiant {
+ 
+ 
+  nom String,
+  prenom String,
+  dateNaissance LocalDate,
+  lieuNaissance String,
+  cne String,
+  cni String,
+  mail String,
+  gsm String,
+}
+
+entity Niveau {
+ 
+  nom String
+}
+
+entity Filiere {
+  
+  nom String
+}
+
+entity Groupe {
+ 
+  nom String
+}
+
+entity SalleExamen {
+  
+  nom String,
+  capacite Long,
+  disponibilite Boolean,
+  localisation String
+}
+
+entity Examen {
+  nom String,
+  date LocalDate,
+  heureDebut String,
+  heureFin String
+}
+
+// Define relationships
+relationship ManyToOne {
+  Etudiant{groupe(id)} to Groupe
+  Etudiant{niveau(id)} to Niveau
+  Etudiant{filiere(id)} to Filiere
+}
+
+relationship OneToMany {
+  Filiere{groupe(id)} to Groupe
+}
+
+relationship ManyToMany {
+  Groupe{examen} to Examen{groupe} // Relation ManyToMany avec une classe associative Examen
+  Examen{salleExamen} to SalleExamen{examen}
+  Niveau to Filiere
+}

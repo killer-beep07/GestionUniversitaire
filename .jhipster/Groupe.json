@@ -1,0 +1,22 @@
+{
+  "applications": "*",
+  "changelogDate": "20231206161509",
+  "entityTableName": "groupe",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Groupe",
+  "relationships": [
+    {
+      "otherEntityName": "examen",
+      "otherEntityRelationshipName": "groupe",
+      "relationshipName": "examen",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

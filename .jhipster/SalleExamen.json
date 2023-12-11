@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20231206161609",
+  "entityTableName": "salle_examen",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "capacite",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "disponibilite",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "localisation",
+      "fieldType": "String"
+    }
+  ],
+  "name": "SalleExamen",
+  "relationships": [
+    {
+      "otherEntityName": "examen",
+      "otherEntityRelationshipName": "salleExamen",
+      "relationshipName": "examen",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

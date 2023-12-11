@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20231206161709",
+  "entityTableName": "examen",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "heureDebut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "heureFin",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Examen",
+  "relationships": [
+    {
+      "otherEntityName": "salleExamen",
+      "otherEntityRelationshipName": "examen",
+      "relationshipName": "salleExamen",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "groupe",
+      "otherEntityRelationshipName": "examen",
+      "relationshipName": "groupe",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

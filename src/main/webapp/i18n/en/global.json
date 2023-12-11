@@ -6,8 +6,16 @@
       "home": "Home",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entities",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+        "main": "Fonctionnalites",
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "etudiant": "Gestion des etudiants",
+        "niveau": "Gestion de niveau",
+        "filiere": "Gestion de filiere",
+        "groupe": "Gestion de groupe",
+        "salleExamen": "Reservation de Salle dexamen",
+        "examen": "Examen",
+        "planning": "Planning",
+        "calendrier": "Calendrier du semestre"
       },
       "account": {
         "main": "Account",

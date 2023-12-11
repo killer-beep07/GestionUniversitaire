@@ -1,0 +1,22 @@
+{
+  "applications": "*",
+  "changelogDate": "20231206161309",
+  "entityTableName": "niveau",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Niveau",
+  "relationships": [
+    {
+      "otherEntityName": "filiere",
+      "otherEntityRelationshipName": "niveau",
+      "relationshipName": "filiere",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

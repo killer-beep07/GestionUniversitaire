@@ -48,6 +48,19 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.User.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.mycompany.myapp.domain.Etudiant.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Niveau.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Niveau.class.getName() + ".filieres");
+            createCache(cm, com.mycompany.myapp.domain.Filiere.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Filiere.class.getName() + ".groupes");
+            createCache(cm, com.mycompany.myapp.domain.Filiere.class.getName() + ".niveaus");
+            createCache(cm, com.mycompany.myapp.domain.Groupe.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Groupe.class.getName() + ".examen");
+            createCache(cm, com.mycompany.myapp.domain.SalleExamen.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.SalleExamen.class.getName() + ".examen");
+            createCache(cm, com.mycompany.myapp.domain.Examen.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Examen.class.getName() + ".salleExamen");
+            createCache(cm, com.mycompany.myapp.domain.Examen.class.getName() + ".groupes");
             // jhipster-needle-ehcache-add-entry
         };
     }

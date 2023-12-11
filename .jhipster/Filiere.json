@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20231206161409",
+  "entityTableName": "filiere",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Filiere",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "groupe",
+      "relationshipName": "groupe",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "niveau",
+      "otherEntityRelationshipName": "filiere",
+      "relationshipName": "niveau",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

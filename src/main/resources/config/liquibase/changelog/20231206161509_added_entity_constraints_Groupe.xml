@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Groupe.
+    -->
+    <changeSet id="20231206161509-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="groupe_id"
+                                 baseTableName="rel_groupe__examen"
+                                 constraintName="fk_rel_groupe__examen__groupe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groupe"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="examen_id"
+                                 baseTableName="rel_groupe__examen"
+                                 constraintName="fk_rel_groupe__examen__examen_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="examen"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="filiere_id"
+                                 baseTableName="groupe"
+                                 constraintName="fk_groupe__filiere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filiere"
+                                 />
+    </changeSet>
+</databaseChangeLog>

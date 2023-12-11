@@ -1,0 +1,28 @@
+{
+  "gestionUniversitaireApp": {
+    "salleExamen": {
+      "home": {
+        "title": "SalleExamen",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Salle Examen",
+        "createOrEditLabel": "Créer ou éditer un Salle Examen",
+        "notFound": "Aucun Salle Examen trouvé"
+      },
+      "created": "Un nouveau Salle Examen a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Salle Examen avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Salle Examen avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Salle Examen {{ id }} ?"
+      },
+      "detail": {
+        "title": "Salle Examen"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "capacite": "Capacite",
+      "disponibilite": "Disponibilite",
+      "localisation": "Localisation",
+      "examen": "Examen"
+    }
+  }
+}
