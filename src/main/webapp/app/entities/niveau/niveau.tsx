@@ -111,7 +111,7 @@ export const Niveau = () => {
                     {niveau.filieres
                       ? niveau.filieres.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/filiere/${val.id}`}>{val.id}</Link>
+                            <Link to={`/filiere/${val.id}`}>{val.nom}</Link>
                             {j === niveau.filieres.length - 1 ? '' : ', '}
                           </span>
                         ))

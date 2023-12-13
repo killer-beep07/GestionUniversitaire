@@ -46,11 +46,13 @@ relationship ManyToOne {
   Etudiant{groupe(id)} to Groupe
   Etudiant{niveau(id)} to Niveau
   Etudiant{filiere(id)} to Filiere
+  Groupe{niveau(id)} to Niveau
 }
 
 relationship OneToMany {
   Filiere{groupe(id)} to Groupe
 }
+
 
 relationship ManyToMany {
   Groupe{examen} to Examen{groupe} // Relation ManyToMany avec une classe associative Examen

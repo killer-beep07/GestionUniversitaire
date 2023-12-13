@@ -29,7 +29,7 @@ public class Filiere implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "filiere")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "examen", "filiere" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "niveau", "examen", "filiere" }, allowSetters = true)
     private Set<Groupe> groupes = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "filieres")

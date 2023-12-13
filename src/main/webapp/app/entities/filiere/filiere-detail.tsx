@@ -25,12 +25,13 @@ export const FiliereDetail = () => {
           <Translate contentKey="gestionUniversitaireApp.filiere.detail.title">Filiere</Translate>
         </h2>
         <dl className="jh-entity-details">
-          <dt>
+          <br />
+          {/* <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{filiereEntity.id}</dd>
+          <dd>{filiereEntity.id}</dd> */}
           <dt>
             <span id="nom">
               <Translate contentKey="gestionUniversitaireApp.filiere.nom">Nom</Translate>

@@ -45,7 +45,7 @@ export const ExamenDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="gestionUniversitaireApp.examen.delete.question">
-        <Translate contentKey="gestionUniversitaireApp.examen.delete.question" interpolate={{ id: examenEntity.id }}>
+        <Translate contentKey="gestionUniversitaireApp.examen.delete.question" interpolate={{ nom: examenEntity.nom }}>
           Are you sure you want to delete this Examen?
         </Translate>
       </ModalBody>

@@ -45,7 +45,7 @@ export const GroupeDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="gestionUniversitaireApp.groupe.delete.question">
-        <Translate contentKey="gestionUniversitaireApp.groupe.delete.question" interpolate={{ id: groupeEntity.id }}>
+        <Translate contentKey="gestionUniversitaireApp.groupe.delete.question" interpolate={{ nom: groupeEntity.nom }}>
           Are you sure you want to delete this Groupe?
         </Translate>
       </ModalBody>

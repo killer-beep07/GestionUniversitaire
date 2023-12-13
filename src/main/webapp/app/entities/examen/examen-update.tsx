@@ -93,7 +93,8 @@ export const ExamenUpdate = () => {
             <p>Loading...</p>
           ) : (
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
-              {!isNew ? (
+              <br />
+              {/* {!isNew ? (
                 <ValidatedField
                   name="id"
                   required
@@ -102,7 +103,7 @@ export const ExamenUpdate = () => {
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
-              ) : null}
+              ) : null} */}
               <ValidatedField
                 label={translate('gestionUniversitaireApp.examen.nom')}
                 id="examen-nom"
@@ -143,7 +144,7 @@ export const ExamenUpdate = () => {
                 {salleExamen
                   ? salleExamen.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}

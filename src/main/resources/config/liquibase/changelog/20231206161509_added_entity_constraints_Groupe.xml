@@ -8,6 +8,13 @@
     -->
     <changeSet id="20231206161509-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="niveau_id"
+                                 baseTableName="groupe"
+                                 constraintName="fk_groupe__niveau_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="niveau"
+                                 />
+
         <addForeignKeyConstraint baseColumnNames="groupe_id"
                                  baseTableName="rel_groupe__examen"
                                  constraintName="fk_rel_groupe__examen__groupe_id"

@@ -12,13 +12,14 @@
       "updated": "Le Groupe avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "Le Groupe avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Groupe {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer le Groupe {{ nom }} ?"
       },
       "detail": {
         "title": "Groupe"
       },
       "id": "ID",
       "nom": "Nom",
+      "niveau": "Niveau",
       "examen": "Examen",
       "filiere": "Filiere"
     }

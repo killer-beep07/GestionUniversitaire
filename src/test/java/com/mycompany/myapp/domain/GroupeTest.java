@@ -3,6 +3,7 @@ package com.mycompany.myapp.domain;
 import static com.mycompany.myapp.domain.ExamenTestSamples.*;
 import static com.mycompany.myapp.domain.FiliereTestSamples.*;
 import static com.mycompany.myapp.domain.GroupeTestSamples.*;
+import static com.mycompany.myapp.domain.NiveauTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.mycompany.myapp.web.rest.TestUtil;
@@ -24,6 +25,18 @@ class GroupeTest {
 
         groupe2 = getGroupeSample2();
         assertThat(groupe1).isNotEqualTo(groupe2);
+    }
+
+    @Test
+    void niveauTest() throws Exception {
+        Groupe groupe = getGroupeRandomSampleGenerator();
+        Niveau niveauBack = getNiveauRandomSampleGenerator();
+
+        groupe.setNiveau(niveauBack);
+        assertThat(groupe.getNiveau()).isEqualTo(niveauBack);
+
+        groupe.niveau(null);
+        assertThat(groupe.getNiveau()).isNull();
     }
 
     @Test

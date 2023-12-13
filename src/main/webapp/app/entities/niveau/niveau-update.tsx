@@ -89,7 +89,8 @@ export const NiveauUpdate = () => {
             <p>Loading...</p>
           ) : (
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
-              {!isNew ? (
+              <br />
+              {/* {!isNew ? (
                 <ValidatedField
                   name="id"
                   required
@@ -98,7 +99,7 @@ export const NiveauUpdate = () => {
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
-              ) : null}
+              ) : null} */}
               <ValidatedField
                 label={translate('gestionUniversitaireApp.niveau.nom')}
                 id="niveau-nom"
@@ -118,7 +119,7 @@ export const NiveauUpdate = () => {
                 {filieres
                   ? filieres.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}

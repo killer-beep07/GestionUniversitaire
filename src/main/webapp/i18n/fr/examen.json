@@ -12,7 +12,7 @@
       "updated": "Le Examen avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "Le Examen avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Examen {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer le Examen {{ nom }} ?"
       },
       "detail": {
         "title": "Examen"

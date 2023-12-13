@@ -27,6 +27,10 @@ public class Groupe implements Serializable {
     @Column(name = "nom")
     private String nom;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "filieres" }, allowSetters = true)
+    private Niveau niveau;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "rel_groupe__examen",
@@ -67,6 +71,19 @@ public class Groupe implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Niveau getNiveau() {
+        return this.niveau;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+    }
+
+    public Groupe niveau(Niveau niveau) {
+        this.setNiveau(niveau);
+        return this;
     }
 
     public Set<Examen> getExamen() {

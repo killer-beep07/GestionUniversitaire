@@ -8,6 +8,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { INiveau } from 'app/shared/model/niveau.model';
+import { getEntities as getNiveaus } from 'app/entities/niveau/niveau.reducer';
 import { IExamen } from 'app/shared/model/examen.model';
 import { getEntities as getExamen } from 'app/entities/examen/examen.reducer';
 import { IFiliere } from 'app/shared/model/filiere.model';
@@ -23,6 +25,7 @@ export const GroupeUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
+  const niveaus = useAppSelector(state => state.niveau.entities);
   const examen = useAppSelector(state => state.examen.entities);
   const filieres = useAppSelector(state => state.filiere.entities);
   const groupeEntity = useAppSelector(state => state.groupe.entity);
@@ -41,6 +44,7 @@ export const GroupeUpdate = () => {
       dispatch(getEntity(id));
     }
 
+    dispatch(getNiveaus({}));
     dispatch(getExamen({}));
     dispatch(getFilieres({}));
   }, []);
@@ -61,6 +65,7 @@ export const GroupeUpdate = () => {
       ...groupeEntity,
       ...values,
       examen: mapIdList(values.examen),
+      niveau: niveaus.find(it => it.id.toString() === values.niveau.toString()),
       filiere: filieres.find(it => it.id.toString() === values.filiere.toString()),
     };
 
@@ -76,6 +81,7 @@ export const GroupeUpdate = () => {
       ? {}
       : {
           ...groupeEntity,
+          niveau: groupeEntity?.niveau?.id,
           examen: groupeEntity?.examen?.map(e => e.id.toString()),
           filiere: groupeEntity?.filiere?.id,
         };
@@ -112,6 +118,22 @@ export const GroupeUpdate = () => {
                 data-cy="nom"
                 type="text"
               />
+              <ValidatedField
+                id="groupe-niveau"
+                name="niveau"
+                data-cy="niveau"
+                label={translate('gestionUniversitaireApp.groupe.niveau')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {niveaus
+                  ? niveaus.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <ValidatedField
                 label={translate('gestionUniversitaireApp.groupe.examen')}
                 id="groupe-examen"

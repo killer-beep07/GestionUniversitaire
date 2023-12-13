@@ -48,7 +48,7 @@ public class Etudiant implements Serializable {
     private String gsm;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "examen", "filiere" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "niveau", "examen", "filiere" }, allowSetters = true)
     private Groupe groupe;
 
     @ManyToOne(fetch = FetchType.LAZY)

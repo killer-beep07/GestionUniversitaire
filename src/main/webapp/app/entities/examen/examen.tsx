@@ -8,14 +8,12 @@ import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, SORT } from 'app/shared/util/pagination.constants';
 import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { AUTHORITIES } from 'app/config/constants';
+
 import { getEntities } from './examen.reducer';
-import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
 export const Examen = () => {
   const dispatch = useAppDispatch();
-  const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
-  console.log(isAdmin);
+
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
@@ -130,7 +128,7 @@ export const Examen = () => {
                     {examen.salleExamen
                       ? examen.salleExamen.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/salle-examen/${val.id}`}>{val.id}</Link>
+                            <Link to={`/salle-examen/${val.id}`}>{val.nom}</Link>
                             {j === examen.salleExamen.length - 1 ? '' : ', '}
                           </span>
                         ))
@@ -144,29 +142,23 @@ export const Examen = () => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-
-                      {isAdmin && (
-                        <>
-                          <Button tag={Link} to={`/examen/${examen.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
-                            <FontAwesomeIcon icon="pencil-alt" />{' '}
-                            <span className="d-none d-md-inline">
-                              <Translate contentKey="entity.action.edit">Edit</Translate>
-                            </span>
-                          </Button>
-
-                          <Button
-                            onClick={() => (location.href = `/examen/${examen.id}/delete`)}
-                            color="danger"
-                            size="sm"
-                            data-cy="entityDeleteButton"
-                          >
-                            <FontAwesomeIcon icon="trash" />{' '}
-                            <span className="d-none d-md-inline">
-                              <Translate contentKey="entity.action.delete">Delete</Translate>
-                            </span>
-                          </Button>
-                        </>
-                      )}
+                      <Button tag={Link} to={`/examen/${examen.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                        <FontAwesomeIcon icon="pencil-alt" />{' '}
+                        <span className="d-none d-md-inline">
+                          <Translate contentKey="entity.action.edit">Edit</Translate>
+                        </span>
+                      </Button>
+                      <Button
+                        onClick={() => (location.href = `/examen/${examen.id}/delete`)}
+                        color="danger"
+                        size="sm"
+                        data-cy="entityDeleteButton"
+                      >
+                        <FontAwesomeIcon icon="trash" />{' '}
+                        <span className="d-none d-md-inline">
+                          <Translate contentKey="entity.action.delete">Delete</Translate>
+                        </span>
+                      </Button>
                     </div>
                   </td>
                 </tr>

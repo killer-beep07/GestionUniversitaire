@@ -8,11 +8,11 @@
       "entities": {
         "main": "Fonctionnalites",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "etudiant": "Gestion des etudiants",
-        "niveau": "Gestion de niveau",
-        "filiere": "Gestion de filiere",
-        "groupe": "Gestion de groupe",
-        "salleExamen": "Reservation de Salle dexamen",
+        "etudiant": "Etudiant",
+        "niveau": "Niveau",
+        "filiere": "Filiere",
+        "groupe": "Groupe",
+        "salleExamen": "Salle Examen",
         "examen": "Examen",
         "planning": "Planning",
         "calendrier": "Calendrier du semestre"
@@ -151,5 +151,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "<i style=\"font-size:24px\" class=\"fa\">&#xf1f9;</i><i class=\"fa fa-copyright\" style=\"font-size:24px\">copy</i>"
+  "footer": "© 2023 Gestion Universitaire. All rights reserved"
 }

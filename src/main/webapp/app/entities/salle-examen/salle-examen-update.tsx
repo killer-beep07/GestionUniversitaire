@@ -90,7 +90,7 @@ export const SalleExamenUpdate = () => {
             <p>Loading...</p>
           ) : (
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
-              {!isNew ? (
+              {/* {!isNew ? (
                 <ValidatedField
                   name="id"
                   required
@@ -99,7 +99,7 @@ export const SalleExamenUpdate = () => {
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
-              ) : null}
+              ) : null} */}
               <ValidatedField
                 label={translate('gestionUniversitaireApp.salleExamen.nom')}
                 id="salle-examen-nom"

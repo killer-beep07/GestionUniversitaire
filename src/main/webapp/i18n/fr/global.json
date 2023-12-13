@@ -13,7 +13,9 @@
         "filiere": "Filiere",
         "groupe": "Groupe",
         "salleExamen": "Salle Examen",
-        "examen": "Examen"
+        "examen": "Examen",
+        "planning": "Planning",
+        "calendrier": "Calendrier du semestre"
       },
       "account": {
         "main": "Compte",
@@ -149,5 +151,5 @@
       "not.image": "Le fichier doit être une image et non du type \"{{ fileType }}\""
     }
   },
-  "footer": "&copy;"
+  "footer": "© 2023 Gestion Universitaire. All rights reserved"
 }

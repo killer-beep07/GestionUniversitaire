@@ -25,12 +25,13 @@ export const GroupeDetail = () => {
           <Translate contentKey="gestionUniversitaireApp.groupe.detail.title">Groupe</Translate>
         </h2>
         <dl className="jh-entity-details">
-          <dt>
+          <br />
+          {/* <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{groupeEntity.id}</dd>
+          <dd>{groupeEntity.id}</dd> */}
           <dt>
             <span id="nom">
               <Translate contentKey="gestionUniversitaireApp.groupe.nom">Nom</Translate>
@@ -38,13 +39,17 @@ export const GroupeDetail = () => {
           </dt>
           <dd>{groupeEntity.nom}</dd>
           <dt>
+            <Translate contentKey="gestionUniversitaireApp.groupe.niveau">Niveau</Translate>
+          </dt>
+          <dd>{groupeEntity.niveau ? groupeEntity.niveau.id : ''}</dd>
+          <dt>
             <Translate contentKey="gestionUniversitaireApp.groupe.examen">Examen</Translate>
           </dt>
           <dd>
             {groupeEntity.examen
               ? groupeEntity.examen.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    <a>{val.nom}</a>
                     {groupeEntity.examen && i === groupeEntity.examen.length - 1 ? '' : ', '}
                   </span>
                 ))

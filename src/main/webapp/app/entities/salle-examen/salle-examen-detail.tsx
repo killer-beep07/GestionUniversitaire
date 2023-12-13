@@ -25,12 +25,13 @@ export const SalleExamenDetail = () => {
           <Translate contentKey="gestionUniversitaireApp.salleExamen.detail.title">SalleExamen</Translate>
         </h2>
         <dl className="jh-entity-details">
-          <dt>
+          <br />
+          {/* <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{salleExamenEntity.id}</dd>
+          <dd>{salleExamenEntity.id}</dd> */}
           <dt>
             <span id="nom">
               <Translate contentKey="gestionUniversitaireApp.salleExamen.nom">Nom</Translate>

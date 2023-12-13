@@ -11,6 +11,13 @@
   "name": "Groupe",
   "relationships": [
     {
+      "otherEntityField": "id",
+      "otherEntityName": "niveau",
+      "relationshipName": "niveau",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "examen",
       "otherEntityRelationshipName": "groupe",
       "relationshipName": "examen",

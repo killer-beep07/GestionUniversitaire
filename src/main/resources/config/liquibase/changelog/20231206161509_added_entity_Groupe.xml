@@ -17,6 +17,9 @@
             <column name="nom" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="niveau_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="filiere_id" type="bigint">
                 <constraints nullable="true" />
             </column>

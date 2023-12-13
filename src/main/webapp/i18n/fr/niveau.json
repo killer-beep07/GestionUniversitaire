@@ -12,7 +12,7 @@
       "updated": "Le Niveau avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "Le Niveau avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Niveau {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer le Niveau {{ nom }} ?"
       },
       "detail": {
         "title": "Niveau"

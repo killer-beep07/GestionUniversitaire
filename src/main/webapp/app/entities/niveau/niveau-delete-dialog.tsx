@@ -45,7 +45,7 @@ export const NiveauDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="gestionUniversitaireApp.niveau.delete.question">
-        <Translate contentKey="gestionUniversitaireApp.niveau.delete.question" interpolate={{ id: niveauEntity.id }}>
+        <Translate contentKey="gestionUniversitaireApp.niveau.delete.question" interpolate={{ nom: niveauEntity.nom }}>
           Are you sure you want to delete this Niveau?
         </Translate>
       </ModalBody>

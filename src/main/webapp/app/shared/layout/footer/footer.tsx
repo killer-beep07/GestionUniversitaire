@@ -11,7 +11,7 @@ const Footer = () => (
     <Row>
       <Col md="12">
         <p>
-          <Translate contentKey="footer">&copy; by Amine </Translate>
+          <Translate contentKey="footer">© 2023 Gestion Universitaire. All rights reserved; by Amine </Translate>
         </p>
       </Col>
     </Row>

@@ -7,9 +7,6 @@ import Etudiant from './etudiant';
 import EtudiantDetail from './etudiant-detail';
 import EtudiantUpdate from './etudiant-update';
 import EtudiantDeleteDialog from './etudiant-delete-dialog';
-import { useAppSelector } from 'app/config/store';
-import { hasAnyAuthority } from 'app/shared/auth/private-route';
-import { AUTHORITIES } from 'app/config/constants';
 
 const EtudiantRoutes = () => (
   <ErrorBoundaryRoutes>
@@ -19,7 +16,7 @@ const EtudiantRoutes = () => (
       <Route index element={<EtudiantDetail />} />
       <Route path="edit" element={<EtudiantUpdate />} />
       <Route path="delete" element={<EtudiantDeleteDialog />} />
-    </Route>{' '}
+    </Route>
   </ErrorBoundaryRoutes>
 );
 

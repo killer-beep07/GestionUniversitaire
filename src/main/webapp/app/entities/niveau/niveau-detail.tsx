@@ -25,12 +25,13 @@ export const NiveauDetail = () => {
           <Translate contentKey="gestionUniversitaireApp.niveau.detail.title">Niveau</Translate>
         </h2>
         <dl className="jh-entity-details">
-          <dt>
+          <br />
+          {/* <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{niveauEntity.id}</dd>
+          <dd>{niveauEntity.id}</dd> */}
           <dt>
             <span id="nom">
               <Translate contentKey="gestionUniversitaireApp.niveau.nom">Nom</Translate>
@@ -44,7 +45,7 @@ export const NiveauDetail = () => {
             {niveauEntity.filieres
               ? niveauEntity.filieres.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    <a>{val.nom}</a>
                     {niveauEntity.filieres && i === niveauEntity.filieres.length - 1 ? '' : ', '}
                   </span>
                 ))

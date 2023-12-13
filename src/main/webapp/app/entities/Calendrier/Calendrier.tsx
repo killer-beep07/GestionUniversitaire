@@ -18,7 +18,7 @@ const MyImageViewer = () => {
 
   return (
     <div>
-      <h2>Image Viewer</h2>
+      {/* <h2>Image Viewer</h2> */}
       <div style={containerStyle}>
         <img src={imageUrl} alt="Your Image" style={imageStyle} />
       </div>

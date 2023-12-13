@@ -12,7 +12,7 @@
       "updated": "Le Filiere avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "Le Filiere avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Filiere {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer le Filiere {{ nom }} ?"
       },
       "detail": {
         "title": "Filiere"

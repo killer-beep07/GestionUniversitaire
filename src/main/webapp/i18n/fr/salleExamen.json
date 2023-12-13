@@ -12,7 +12,7 @@
       "updated": "Le Salle Examen avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "Le Salle Examen avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Salle Examen {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer le Salle Examen {{ nom }} ?"
       },
       "detail": {
         "title": "Salle Examen"

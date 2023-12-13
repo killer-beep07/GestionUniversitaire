@@ -93,6 +93,9 @@ export const Groupe = () => {
                   <FontAwesomeIcon icon={getSortIconByFieldName('nom')} />
                 </th>
                 <th>
+                  <Translate contentKey="gestionUniversitaireApp.groupe.niveau">Niveau</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
                   <Translate contentKey="gestionUniversitaireApp.groupe.examen">Examen</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
@@ -110,11 +113,12 @@ export const Groupe = () => {
                     </Button>
                   </td>
                   <td>{groupe.nom}</td>
+                  <td>{groupe.niveau ? <Link to={`/niveau/${groupe.niveau.id}`}>{groupe.niveau.id}</Link> : ''}</td>
                   <td>
                     {groupe.examen
                       ? groupe.examen.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/examen/${val.id}`}>{val.id}</Link>
+                            <Link to={`/examen/${val.id}`}>{val.nom}</Link>
                             {j === groupe.examen.length - 1 ? '' : ', '}
                           </span>
                         ))
