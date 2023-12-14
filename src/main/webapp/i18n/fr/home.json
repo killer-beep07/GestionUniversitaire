@@ -1,9 +1,9 @@
 {
   "home": {
-    "title": "Bienvenue, \"{{username}}\"!",
-    "subtitle": "Ceci est votre page d'accueil",
+    "welcomeMessage": "Bienvenue à notre application de gestion\nuniversitaire",
+
     "logged": {
-      "message": "Vous êtes connecté en tant que \"{{username}}\"."
+      "message": "Vous êtes connecté en tant que {{role}}."
     },
     "question": "Si vous avez des questions à propos de JHipster :",
     "link": {

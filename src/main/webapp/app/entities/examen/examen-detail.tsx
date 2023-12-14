@@ -60,7 +60,7 @@ export const ExamenDetail = () => {
             {examenEntity.salleExamen
               ? examenEntity.salleExamen.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    {val.nom}
                     {examenEntity.salleExamen && i === examenEntity.salleExamen.length - 1 ? '' : ', '}
                   </span>
                 ))

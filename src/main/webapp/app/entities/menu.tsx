@@ -5,6 +5,16 @@ import MenuItem from 'app/shared/layout/menus/menu-item';
 import { useAppSelector } from 'app/config/store';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import { AUTHORITIES } from 'app/config/constants';
+import {
+  faBook,
+  faBookOpen,
+  faBuilding,
+  faCalendarAlt,
+  faChalkboard,
+  faClipboardCheck,
+  faGraduationCap,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 const EntitiesMenu = () => {
   const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
@@ -15,31 +25,32 @@ const EntitiesMenu = () => {
 
       {isAdmin && (
         <>
-          <MenuItem icon="asterisk" to="/etudiant">
+          <MenuItem icon={faUser} to="/etudiant">
             <Translate contentKey="global.menu.entities.etudiant" />
           </MenuItem>
 
-          <MenuItem icon="asterisk" to="/niveau">
+          <MenuItem icon={faGraduationCap} to="/niveau">
             <Translate contentKey="global.menu.entities.niveau" />
           </MenuItem>
-          <MenuItem icon="asterisk" to="/filiere">
+          <MenuItem icon={faBook} to="/filiere">
             <Translate contentKey="global.menu.entities.filiere" />
           </MenuItem>
-          <MenuItem icon="asterisk" to="/groupe">
-            <Translate contentKey="global.menu.entities.groupe" />
-          </MenuItem>
-          <MenuItem icon="asterisk" to="/salle-examen">
+
+          <MenuItem icon={faBuilding} to="/salle-examen">
             <Translate contentKey="global.menu.entities.salleExamen" />
           </MenuItem>
         </>
       )}
-      <MenuItem icon="asterisk" to="/examen">
+      <MenuItem icon={faChalkboard} to="/groupe">
+        <Translate contentKey="global.menu.entities.groupe" />
+      </MenuItem>
+      <MenuItem icon={faClipboardCheck} to="/examen">
         <Translate contentKey="global.menu.entities.examen" />
       </MenuItem>
-      <MenuItem icon="asterisk" to="/planning">
+      <MenuItem icon={faBookOpen} to="/planning">
         <Translate contentKey="global.menu.entities.planning" />
       </MenuItem>
-      <MenuItem icon="asterisk" to="/Calendrier">
+      <MenuItem icon={faCalendarAlt} to="/Calendrier">
         <Translate contentKey="global.menu.entities.calendrier" />
       </MenuItem>
       {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}

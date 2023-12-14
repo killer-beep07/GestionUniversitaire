@@ -13,31 +13,33 @@ export const GroupeDetail = () => {
   const [niveauNoms, setNiveauNoms] = useState({});
   const [filiereNoms, setFiliereNoms] = useState({});
   const groupeList = useAppSelector(state => state.groupe.entities);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getEntity(id));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const [groupeEntity, niveauNoms, filiereNoms] = await Promise.all([
+          dispatch(getEntity(id)),
+          fetch(`/api/groupes/${id}/niveau-nom`).then(response => response.text()),
+          fetch(`/api/groupes/${id}/filiere-nom`).then(response => response.text()),
+        ]);
 
-  useEffect(() => {
-    const fetchNiveauAndFiliereNames = async () => {
-      await Promise.all(
-        groupeList.map(async groupe => {
-          const niveauNomResponse = await fetch(`/api/groupes/${groupe.id}/niveau-nom`);
-          const filiereNomResponse = await fetch(`/api/groupes/${groupe.id}/filiere-nom`);
-
-          const niveauNom = await niveauNomResponse.text();
-          const filiereNom = await filiereNomResponse.text();
-
-          setNiveauNoms(prevState => ({ ...prevState, [groupe.id]: niveauNom }));
-          setFiliereNoms(prevState => ({ ...prevState, [groupe.id]: filiereNom }));
-        }),
-      );
+        setNiveauNoms({ [id]: niveauNoms });
+        setFiliereNoms({ [id]: filiereNoms });
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
 
-    fetchNiveauAndFiliereNames();
-  }, [groupeList]);
+    fetchData();
+  }, [id, dispatch]);
 
   const groupeEntity = useAppSelector(state => state.groupe.entity);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Row>
@@ -56,7 +58,7 @@ export const GroupeDetail = () => {
           <dt>
             <Translate contentKey="gestionUniversitaireApp.groupe.niveau">Niveau</Translate>
           </dt>
-          <dd>{niveauNoms[groupeEntity.id]}</dd>
+          <dd>{niveauNoms[id]}</dd>
           <dt>
             <Translate contentKey="gestionUniversitaireApp.groupe.examen">Examen</Translate>
           </dt>
@@ -64,7 +66,7 @@ export const GroupeDetail = () => {
             {groupeEntity.examen
               ? groupeEntity.examen.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.nom}</a>
+                    {val.nom}
                     {groupeEntity.examen && i === groupeEntity.examen.length - 1 ? '' : ', '}
                   </span>
                 ))
@@ -73,7 +75,7 @@ export const GroupeDetail = () => {
           <dt>
             <Translate contentKey="gestionUniversitaireApp.groupe.filiere">Filiere</Translate>
           </dt>
-          <dd>{filiereNoms[groupeEntity.id]}</dd>
+          <dd>{filiereNoms[id]}</dd>
         </dl>
         <Button tag={Link} to="/groupe" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

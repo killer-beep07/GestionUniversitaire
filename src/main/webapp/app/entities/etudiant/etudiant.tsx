@@ -18,7 +18,9 @@ export const Etudiant = () => {
   const navigate = useNavigate();
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
-
+  const [niveauNoms, setNiveauNoms] = useState({}); // State to store niveau names
+  const [filiereNoms, setFiliereNoms] = useState({});
+  const [groupeNoms, setGroupeNoms] = useState({}); // State to store groupe names
   const etudiantList = useAppSelector(state => state.etudiant.entities);
   const loading = useAppSelector(state => state.etudiant.loading);
 
@@ -41,7 +43,26 @@ export const Etudiant = () => {
   useEffect(() => {
     sortEntities();
   }, [sortState.order, sortState.sort]);
+  useEffect(() => {
+    // Fetch niveau and filiere names when groupeList changes
+    const fetchNiveauAndFiliereandGroupeNames = async () => {
+      await Promise.all(
+        etudiantList.map(async etudiant => {
+          const niveauNomResponse = await fetch(`/api/etudiants/${etudiant.id}/niveau-nom`);
+          const filiereNomResponse = await fetch(`/api/etudiants/${etudiant.id}/filiere-nom`);
+          const groupeNomResponse = await fetch(`/api/etudiants/${etudiant.id}/groupe-nom`);
+          const niveauNom = await niveauNomResponse.text();
+          const filiereNom = await filiereNomResponse.text();
+          const groupeNom = await groupeNomResponse.text();
+          setNiveauNoms(prevState => ({ ...prevState, [etudiant.id]: niveauNom }));
+          setFiliereNoms(prevState => ({ ...prevState, [etudiant.id]: filiereNom }));
+          setGroupeNoms(prevState => ({ ...prevState, [etudiant.id]: groupeNom }));
+        }),
+      );
+    };
 
+    fetchNiveauAndFiliereandGroupeNames();
+  }, [etudiantList]);
   const sort = p => () => {
     setSortState({
       ...sortState,
@@ -153,9 +174,9 @@ export const Etudiant = () => {
                   <td>{etudiant.cni}</td>
                   <td>{etudiant.mail}</td>
                   <td>{etudiant.gsm}</td>
-                  <td>{etudiant.groupe ? <Link to={`/groupe/${etudiant.groupe.id}`}>{etudiant.groupe.id}</Link> : ''}</td>
-                  <td>{etudiant.niveau ? <Link to={`/niveau/${etudiant.niveau.id}`}>{etudiant.niveau.id}</Link> : ''}</td>
-                  <td>{etudiant.filiere ? <Link to={`/filiere/${etudiant.filiere.id}`}>{etudiant.filiere.id}</Link> : ''}</td>
+                  <td>{groupeNoms[etudiant.id]}</td>
+                  <td>{niveauNoms[etudiant.id]}</td>
+                  <td>{filiereNoms[etudiant.id]}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/etudiant/${etudiant.id}`} color="info" size="sm" data-cy="entityDetailsButton">

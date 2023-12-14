@@ -197,4 +197,46 @@ public class EtudiantResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/{id}/filiere-nom")
+    public ResponseEntity<String> getFiliereNomByEtudiantId(@PathVariable Long id) {
+        log.debug("REST request to get Filiere Nom for Etudiant : {}", id);
+        String filiereNom = etudiantRepository.findFiliereNomByEtudiantId(id);
+        return ResponseEntity.ok(filiereNom);
+    }
+
+    @GetMapping("/{id}/niveau-nom")
+    public ResponseEntity<String> getNiveauNomByEtudiantId(@PathVariable Long id) {
+        log.debug("REST request to get Niveau Nom for Groupe : {}", id);
+        String niveauNom = etudiantRepository.findNiveauNomByEtudiantId(id);
+        return ResponseEntity.ok(niveauNom);
+    }
+
+    @GetMapping("/{id}/groupe-nom")
+    public ResponseEntity<String> getGroupeNomByEtudiantId(@PathVariable Long id) {
+        log.debug("REST request to get Groupe Nom for Etudiant : {}", id);
+        String groupeNom = etudiantRepository.findGroupeNomByEtudiantId(id);
+        return ResponseEntity.ok(groupeNom);
+    }
+
+    @GetMapping("/filiere-noms")
+    public ResponseEntity<List<String>> getAllFiliereNoms() {
+        log.debug("REST request to get all Filiere Noms");
+        List<String> filiereNoms = etudiantRepository.findAllFiliereNoms();
+        return ResponseEntity.ok(filiereNoms);
+    }
+
+    @GetMapping("/niveau-noms")
+    public ResponseEntity<List<String>> getAllNiveauNoms() {
+        log.debug("REST request to get all Niveau Noms");
+        List<String> niveauNoms = etudiantRepository.findAllNiveauNoms();
+        return ResponseEntity.ok(niveauNoms);
+    }
+
+    @GetMapping("/groupe-noms")
+    public ResponseEntity<List<String>> getAllGroupeNoms() {
+        log.debug("REST request to get all Groupe Noms");
+        List<String> groupeNoms = etudiantRepository.findAllGroupeNoms();
+        return ResponseEntity.ok(groupeNoms);
+    }
 }

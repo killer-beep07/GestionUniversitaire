@@ -12,7 +12,7 @@ import { AUTHORITIES } from 'app/config/constants';
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
   const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
-  console.log(isAdmin);
+  const role = isAdmin ? 'administrator' : 'student';
   return (
     <Row className="hipster flex-box ">
       <Col md="3" className="pad">
@@ -20,20 +20,25 @@ export const Home = () => {
       </Col>
       <Col>
         <h1 className=" home flex-box">
-          {/* <Translate contentKey="home.title">Welcome, {isAdmin ? 'Admin' : 'Student'}!</Translate> */}
-          <Translate contentKey="home.title" interpolate={{ username: account.login }}>
-            Welcome,{account?.login && account.login}!
-          </Translate>
+          <div
+            style={{
+              textAlign: 'center',
+              color: '#000',
+              textShadow: '1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff',
+              padding: '10px',
+              whiteSpace: 'pre-line',
+            }}
+          >
+            <Translate contentKey="home.welcomeMessage" component="p" />
+          </div>
         </h1>
-        <p className="lead flex-box">
+        {/* <p className="lead flex-box">
           <Translate contentKey="home.subtitle">This is your homepage</Translate>
-        </p>
+        </p> */}
         {account?.login ? (
           <div>
             <Alert color="success flex-box">
-              <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
-                You are logged in as user {account.login}.
-              </Translate>
+              <Translate contentKey="home.logged.message" interpolate={{ role }} />
             </Alert>
           </div>
         ) : (

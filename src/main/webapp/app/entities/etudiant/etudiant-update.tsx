@@ -24,7 +24,9 @@ export const EtudiantUpdate = () => {
 
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
-
+  const [niveauNoms, setNiveauNoms] = useState({}); // State to store niveau names
+  const [filiereNoms, setFiliereNoms] = useState({}); // State to store filiere names
+  const [groupeNoms, setGroupeNoms] = useState({});
   const groupes = useAppSelector(state => state.groupe.entities);
   const niveaus = useAppSelector(state => state.niveau.entities);
   const filieres = useAppSelector(state => state.filiere.entities);
@@ -54,7 +56,27 @@ export const EtudiantUpdate = () => {
       handleClose();
     }
   }, [updateSuccess]);
+  useEffect(() => {
+    const fetchFiliereNoms = async () => {
+      const response = await fetch('/api/groupes/filiere-noms');
+      const data = await response.json();
+      setFiliereNoms(data);
+    };
 
+    const fetchNiveauNoms = async () => {
+      const response = await fetch('/api/groupes/niveau-noms');
+      const data = await response.json();
+      setNiveauNoms(data);
+    };
+    const fetchGroupeNoms = async () => {
+      const response = await fetch('/api/groupes/groupe-noms');
+      const data = await response.json();
+      setGroupeNoms(data);
+    };
+
+    // Appelez les deux méthodes API en parallèle
+    Promise.all([fetchFiliereNoms(), fetchNiveauNoms()]);
+  }, []);
   // eslint-disable-next-line complexity
   const saveEntity = values => {
     if (values.id !== undefined && typeof values.id !== 'number') {
@@ -111,6 +133,7 @@ export const EtudiantUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null}
+              <br />
               <ValidatedField
                 label={translate('gestionUniversitaireApp.etudiant.nom')}
                 id="etudiant-nom"
@@ -178,7 +201,7 @@ export const EtudiantUpdate = () => {
                 {groupes
                   ? groupes.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}
@@ -194,7 +217,7 @@ export const EtudiantUpdate = () => {
                 {niveaus
                   ? niveaus.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}
@@ -210,7 +233,7 @@ export const EtudiantUpdate = () => {
                 {filieres
                   ? filieres.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}

@@ -66,7 +66,7 @@ export const Niveau = () => {
   return (
     <div>
       <h2 id="niveau-heading" data-cy="NiveauHeading">
-        <Translate contentKey="gestionUniversitaireApp.niveau.home.title">Niveaus</Translate>
+        <Translate contentKey="gestionUniversitaireApp.niveau.home.title">Niveaux</Translate>
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
@@ -103,7 +103,7 @@ export const Niveau = () => {
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
                     <Button tag={Link} to={`/niveau/${niveau.id}`} color="link" size="sm">
-                      {niveau.id}
+                      {niveau.nom}
                     </Button>
                   </td>
                   <td>{niveau.nom}</td>

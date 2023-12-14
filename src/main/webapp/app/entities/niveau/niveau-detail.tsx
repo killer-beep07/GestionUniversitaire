@@ -45,7 +45,7 @@ export const NiveauDetail = () => {
             {niveauEntity.filieres
               ? niveauEntity.filieres.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.nom}</a>
+                    {val.nom}
                     {niveauEntity.filieres && i === niveauEntity.filieres.length - 1 ? '' : ', '}
                   </span>
                 ))

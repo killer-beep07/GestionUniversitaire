@@ -2,7 +2,7 @@
   "gestionUniversitaireApp": {
     "niveau": {
       "home": {
-        "title": "Niveaus",
+        "title": "Niveaux",
         "refreshListLabel": "Actualiser la liste",
         "createLabel": "Créer un nouveau Niveau",
         "createOrEditLabel": "Créer ou éditer un Niveau",

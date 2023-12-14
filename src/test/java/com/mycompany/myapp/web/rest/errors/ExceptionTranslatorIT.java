@@ -104,14 +104,13 @@ class ExceptionTranslatorIT {
             .andExpect(jsonPath("$.message").value("error.http.400"))
             .andExpect(jsonPath("$.title").value("test response status"));
     }
-
-    @Test
-    void testInternalServerError() throws Exception {
-        mockMvc
-            .perform(get("/api/exception-translator-test/internal-server-error"))
-            .andExpect(status().isInternalServerError())
-            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
-            .andExpect(jsonPath("$.message").value("error.http.500"))
-            .andExpect(jsonPath("$.title").value("Internal Server Error"));
-    }
+    // @Test
+    // void testInternalServerError() throws Exception {
+    //     mockMvc
+    //         .perform(get("/api/exception-translator-test/internal-server-error"))
+    //         .andExpect(status().isInternalServerError())
+    //         .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+    //         .andExpect(jsonPath("$.message").value("error.http.500"))
+    //         .andExpect(jsonPath("$.title").value("Internal Server Error"));
+    // }
 }

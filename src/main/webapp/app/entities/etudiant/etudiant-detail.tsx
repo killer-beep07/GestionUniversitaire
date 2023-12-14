@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 import { Translate, TextFormat } from 'react-jhipster';
@@ -13,12 +13,39 @@ export const EtudiantDetail = () => {
   const dispatch = useAppDispatch();
 
   const { id } = useParams<'id'>();
+  const [niveauNoms, setNiveauNoms] = useState({});
+  const [filiereNoms, setFiliereNoms] = useState({});
+  const [groupeNoms, setGroupeNoms] = useState({});
+  const etudiantList = useAppSelector(state => state.etudiant.entities);
+  const loading = useAppSelector(state => state.etudiant.loading);
 
   useEffect(() => {
-    dispatch(getEntity(id));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const [etudiantEntity, niveauNom, filiereNom, groupeNom] = await Promise.all([
+          dispatch(getEntity(id)),
+          fetch(`/api/etudiants/${id}/niveau-nom`).then(response => response.text()),
+          fetch(`/api/etudiants/${id}/filiere-nom`).then(response => response.text()),
+          fetch(`/api/etudiants/${id}/groupe-nom`).then(response => response.text()),
+        ]);
+
+        setNiveauNoms({ [id]: niveauNom });
+        setFiliereNoms({ [id]: filiereNom });
+        setGroupeNoms({ [id]: groupeNom });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [id, dispatch]);
 
   const etudiantEntity = useAppSelector(state => state.etudiant.entity);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Row>
       <Col md="8">
@@ -26,12 +53,6 @@ export const EtudiantDetail = () => {
           <Translate contentKey="gestionUniversitaireApp.etudiant.detail.title">Etudiant</Translate>
         </h2>
         <dl className="jh-entity-details">
-          <dt>
-            <span id="id">
-              <Translate contentKey="global.field.id">ID</Translate>
-            </span>
-          </dt>
-          <dd>{etudiantEntity.id}</dd>
           <dt>
             <span id="nom">
               <Translate contentKey="gestionUniversitaireApp.etudiant.nom">Nom</Translate>
@@ -84,18 +105,23 @@ export const EtudiantDetail = () => {
             </span>
           </dt>
           <dd>{etudiantEntity.gsm}</dd>
+
           <dt>
             <Translate contentKey="gestionUniversitaireApp.etudiant.groupe">Groupe</Translate>
           </dt>
-          <dd>{etudiantEntity.groupe ? etudiantEntity.groupe.id : ''}</dd>
+          <dd>{groupeNoms[id]}</dd>
+
           <dt>
-            <Translate contentKey="gestionUniversitaireApp.etudiant.niveau">Niveau</Translate>
+            <span id="niveau">
+              <Translate contentKey="gestionUniversitaireApp.etudiant.niveau">Niveau</Translate>
+            </span>
           </dt>
-          <dd>{etudiantEntity.niveau ? etudiantEntity.niveau.id : ''}</dd>
+          <dd>{niveauNoms[id]}</dd>
+
           <dt>
             <Translate contentKey="gestionUniversitaireApp.etudiant.filiere">Filiere</Translate>
           </dt>
-          <dd>{etudiantEntity.filiere ? etudiantEntity.filiere.id : ''}</dd>
+          <dd>{filiereNoms[id]}</dd>
         </dl>
         <Button tag={Link} to="/etudiant" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

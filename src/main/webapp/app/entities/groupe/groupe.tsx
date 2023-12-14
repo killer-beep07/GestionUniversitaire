@@ -9,11 +9,13 @@ import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntities } from './groupe.reducer';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import { AUTHORITIES } from 'app/config/constants';
 // ... existing imports
 
 export const Groupe = () => {
   const dispatch = useAppDispatch();
-
+  const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
@@ -62,7 +64,6 @@ export const Groupe = () => {
     };
 
     fetchNiveauAndFiliereNames();
-    //console.log('hello ' + fetchNiveauAndFiliereNames());
   }, [groupeList]);
 
   const sort = p => () => {
@@ -96,11 +97,15 @@ export const Groupe = () => {
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="gestionUniversitaireApp.groupe.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/groupe/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
-            <FontAwesomeIcon icon="plus" />
-            &nbsp;
-            <Translate contentKey="gestionUniversitaireApp.groupe.home.createLabel">Create new Groupe</Translate>
-          </Link>
+          {isAdmin && (
+            <>
+              <Link to="/groupe/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+                <FontAwesomeIcon icon="plus" />
+                &nbsp;
+                <Translate contentKey="gestionUniversitaireApp.groupe.home.createLabel">Create new Groupe</Translate>
+              </Link>
+            </>
+          )}
         </div>
       </h2>
       <div className="table-responsive">
@@ -157,23 +162,27 @@ export const Groupe = () => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`/groupe/${groupe.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
-                        <FontAwesomeIcon icon="pencil-alt" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
-                        </span>
-                      </Button>
-                      <Button
-                        onClick={() => (location.href = `/groupe/${groupe.id}/delete`)}
-                        color="danger"
-                        size="sm"
-                        data-cy="entityDeleteButton"
-                      >
-                        <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
-                        </span>
-                      </Button>
+                      {isAdmin && (
+                        <>
+                          <Button tag={Link} to={`/groupe/${groupe.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                            <FontAwesomeIcon icon="pencil-alt" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.edit">Edit</Translate>
+                            </span>
+                          </Button>
+                          <Button
+                            onClick={() => (location.href = `/groupe/${groupe.id}/delete`)}
+                            color="danger"
+                            size="sm"
+                            data-cy="entityDeleteButton"
+                          >
+                            <FontAwesomeIcon icon="trash" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.delete">Delete</Translate>
+                            </span>
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>
