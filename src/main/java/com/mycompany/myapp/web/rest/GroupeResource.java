@@ -193,4 +193,18 @@ public class GroupeResource {
         String niveauNom = groupeRepository.findNiveauNomByGroupeId(id);
         return ResponseEntity.ok(niveauNom);
     }
+
+    @GetMapping("/filiere-noms")
+    public ResponseEntity<List<String>> getAllFiliereNoms() {
+        log.debug("REST request to get all Filiere Noms");
+        List<String> filiereNoms = groupeRepository.findAllFiliereNoms();
+        return ResponseEntity.ok(filiereNoms);
+    }
+
+    @GetMapping("/niveau-noms")
+    public ResponseEntity<List<String>> getAllNiveauNoms() {
+        log.debug("REST request to get all Niveau Noms");
+        List<String> niveauNoms = groupeRepository.findAllNiveauNoms();
+        return ResponseEntity.ok(niveauNoms);
+    }
 }

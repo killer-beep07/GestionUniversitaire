@@ -34,4 +34,10 @@ public interface GroupeRepository extends GroupeRepositoryWithBagRelationships, 
 
     @Query("SELECT g.filiere.nom FROM Groupe g WHERE g.id = :groupeId")
     String findFiliereNomByGroupeId(@Param("groupeId") Long groupeId);
+
+    @Query("SELECT f.nom FROM Filiere f")
+    List<String> findAllFiliereNoms();
+
+    @Query("SELECT n.nom FROM Niveau n")
+    List<String> findAllNiveauNoms();
 }

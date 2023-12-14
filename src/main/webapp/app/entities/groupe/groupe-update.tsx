@@ -250,25 +250,21 @@ export const GroupeUpdate = () => {
     }
   }, [updateSuccess]);
   useEffect(() => {
-    const fetchNiveauAndFiliereNames = async () => {
-      await Promise.all(
-        groupeList.map(async groupe => {
-          const niveauNomResponse = await fetch(`/api/groupes/${groupe.id}/niveau-nom`);
-          const filiereNomResponse = await fetch(`/api/groupes/${groupe.id}/filiere-nom`);
-
-          const niveauNom = await niveauNomResponse.text();
-          const filiereNom = await filiereNomResponse.text();
-
-          setNiveauNoms(prevState => ({ ...prevState, [groupe.id]: niveauNom }));
-          setFiliereNoms(prevState => ({ ...prevState, [groupe.id]: filiereNom }));
-        }),
-      );
+    const fetchFiliereNoms = async () => {
+      const response = await fetch('/api/groupes/filiere-noms');
+      const data = await response.json();
+      setFiliereNoms(data);
     };
 
-    fetchNiveauAndFiliereNames(); // Call the function to fetch names
+    const fetchNiveauNoms = async () => {
+      const response = await fetch('/api/groupes/niveau-noms');
+      const data = await response.json();
+      setNiveauNoms(data);
+    };
 
-    // Assuming groupeList, setNiveauNoms, and setFiliereNoms are dependencies
-  }, [groupeList, setNiveauNoms, setFiliereNoms]);
+    // Appelez les deux méthodes API en parallèle
+    Promise.all([fetchFiliereNoms(), fetchNiveauNoms()]);
+  }, []); // Le tableau de dépendances est vide, cela signifie que useEffect s'exécutera une seule fois après le montage du composant
 
   // eslint-disable-next-line complexity
   const saveEntity = values => {
@@ -326,14 +322,14 @@ export const GroupeUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null} */}
-              <ValidatedField
+              {/* <ValidatedField
                 label={translate('gestionUniversitaireApp.groupe.nom')}
                 id="groupe-nom"
                 name="nom"
                 data-cy="nom"
                 type="text"
-              />
-              <ValidatedField
+              /> */}
+              {/* <ValidatedField
                 id="groupe-niveau"
                 name="niveau"
                 data-cy="niveau"
@@ -348,7 +344,7 @@ export const GroupeUpdate = () => {
                       </option>
                     ))
                   : null}
-              </ValidatedField>
+              </ValidatedField> */}
               <ValidatedField
                 label={translate('gestionUniversitaireApp.groupe.examen')}
                 id="groupe-examen"
@@ -361,12 +357,12 @@ export const GroupeUpdate = () => {
                 {examen
                   ? examen.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}
               </ValidatedField>
-              <ValidatedField
+              {/* <ValidatedField
                 id="groupe-filiere"
                 name="filiere"
                 data-cy="filiere"
@@ -378,6 +374,38 @@ export const GroupeUpdate = () => {
                   ? filieres.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField> */}
+              <ValidatedField
+                id="groupe-niveau"
+                name="niveau"
+                data-cy="niveau"
+                label={translate('gestionUniversitaireApp.groupe.niveau')}
+                type="select"
+              >
+                <option value="select niveau" key="0" />
+                {niveaus
+                  ? niveaus.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.nom}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="groupe-filiere"
+                name="filiere"
+                data-cy="filiere"
+                label={translate('gestionUniversitaireApp.groupe.filiere')}
+                type="select"
+              >
+                <option value="select filiere" key="0" />
+                {filieres
+                  ? filieres.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.nom}
                       </option>
                     ))
                   : null}
