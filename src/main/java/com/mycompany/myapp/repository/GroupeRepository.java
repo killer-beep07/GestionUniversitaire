@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -27,4 +28,10 @@ public interface GroupeRepository extends GroupeRepositoryWithBagRelationships, 
     default Page<Groupe> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
+
+    @Query("SELECT g.niveau.nom FROM Groupe g WHERE g.id = :groupeId")
+    String findNiveauNomByGroupeId(@Param("groupeId") Long groupeId);
+
+    @Query("SELECT g.filiere.nom FROM Groupe g WHERE g.id = :groupeId")
+    String findFiliereNomByGroupeId(@Param("groupeId") Long groupeId);
 }

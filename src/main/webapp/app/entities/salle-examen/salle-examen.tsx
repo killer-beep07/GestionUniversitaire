@@ -127,6 +127,7 @@ export const SalleExamen = () => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
+
                       <Button tag={Link} to={`/salle-examen/${salleExamen.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">

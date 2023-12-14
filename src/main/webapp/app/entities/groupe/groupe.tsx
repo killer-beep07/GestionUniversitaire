@@ -9,6 +9,7 @@ import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntities } from './groupe.reducer';
+// ... existing imports
 
 export const Groupe = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,8 @@ export const Groupe = () => {
   const navigate = useNavigate();
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
+  const [niveauNoms, setNiveauNoms] = useState({}); // State to store niveau names
+  const [filiereNoms, setFiliereNoms] = useState({}); // State to store filiere names
 
   const groupeList = useAppSelector(state => state.groupe.entities);
   const loading = useAppSelector(state => state.groupe.loading);
@@ -40,6 +43,27 @@ export const Groupe = () => {
   useEffect(() => {
     sortEntities();
   }, [sortState.order, sortState.sort]);
+
+  useEffect(() => {
+    // Fetch niveau and filiere names when groupeList changes
+    const fetchNiveauAndFiliereNames = async () => {
+      await Promise.all(
+        groupeList.map(async groupe => {
+          const niveauNomResponse = await fetch(`/api/groupes/${groupe.id}/niveau-nom`);
+          const filiereNomResponse = await fetch(`/api/groupes/${groupe.id}/filiere-nom`);
+
+          const niveauNom = await niveauNomResponse.text();
+          const filiereNom = await filiereNomResponse.text();
+
+          setNiveauNoms(prevState => ({ ...prevState, [groupe.id]: niveauNom }));
+          setFiliereNoms(prevState => ({ ...prevState, [groupe.id]: filiereNom }));
+        }),
+      );
+    };
+
+    fetchNiveauAndFiliereNames();
+    //console.log('hello ' + fetchNiveauAndFiliereNames());
+  }, [groupeList]);
 
   const sort = p => () => {
     setSortState({
@@ -113,7 +137,7 @@ export const Groupe = () => {
                     </Button>
                   </td>
                   <td>{groupe.nom}</td>
-                  <td>{groupe.niveau ? <Link to={`/niveau/${groupe.niveau.id}`}>{groupe.niveau.id}</Link> : ''}</td>
+                  <td>{niveauNoms[groupe.id]}</td>
                   <td>
                     {groupe.examen
                       ? groupe.examen.map((val, j) => (
@@ -124,7 +148,7 @@ export const Groupe = () => {
                         ))
                       : null}
                   </td>
-                  <td>{groupe.filiere ? <Link to={`/filiere/${groupe.filiere.id}`}>{groupe.filiere.id}</Link> : ''}</td>
+                  <td>{filiereNoms[groupe.id]}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/groupe/${groupe.id}`} color="info" size="sm" data-cy="entityDetailsButton">

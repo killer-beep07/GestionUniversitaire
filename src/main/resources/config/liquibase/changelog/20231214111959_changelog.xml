@@ -1,0 +1,191 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="lenovo (generated)" id="1702552813940-1">
+        <createTable tableName="etudiant">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="etudiantPK"/>
+            </column>
+            <column name="cne" type="VARCHAR(255)"/>
+            <column name="cni" type="VARCHAR(255)"/>
+            <column name="date_naissance" type="date"/>
+            <column name="gsm" type="VARCHAR(255)"/>
+            <column name="lieu_naissance" type="VARCHAR(255)"/>
+            <column name="mail" type="VARCHAR(255)"/>
+            <column name="nom" type="VARCHAR(255)"/>
+            <column name="prenom" type="VARCHAR(255)"/>
+            <column name="filiere_id" type="BIGINT"/>
+            <column name="groupe_id" type="BIGINT"/>
+            <column name="niveau_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-2">
+        <createTable tableName="examen">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="examenPK"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="heure_debut" type="VARCHAR(255)"/>
+            <column name="heure_fin" type="VARCHAR(255)"/>
+            <column name="nom" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-3">
+        <createTable tableName="filiere">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="filierePK"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-4">
+        <createTable tableName="groupe">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="groupePK"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)"/>
+            <column name="filiere_id" type="BIGINT"/>
+            <column name="niveau_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-5">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-6">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime(6)"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="datetime(6)"/>
+            <column name="activated" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="datetime(6)"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-7">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_user_authorityPK"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_user_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-8">
+        <createTable tableName="niveau">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="niveauPK"/>
+            </column>
+            <column name="nom" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-9">
+        <createTable tableName="rel_examen__salle_examen">
+            <column name="examen_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_examen__salle_examenPK"/>
+            </column>
+            <column name="salle_examen_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_examen__salle_examenPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-10">
+        <createTable tableName="rel_groupe__examen">
+            <column name="groupe_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_groupe__examenPK"/>
+            </column>
+            <column name="examen_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_groupe__examenPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-11">
+        <createTable tableName="rel_niveau__filiere">
+            <column name="niveau_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_niveau__filierePK"/>
+            </column>
+            <column name="filiere_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rel_niveau__filierePK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-12">
+        <createTable tableName="salle_examen">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="salle_examenPK"/>
+            </column>
+            <column name="capacite" type="BIGINT"/>
+            <column name="disponibilite" type="BIT"/>
+            <column name="localisation" type="VARCHAR(255)"/>
+            <column name="nom" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-13">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-14">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-15">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-16">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-17">
+        <addForeignKeyConstraint baseColumnNames="examen_id" baseTableName="rel_groupe__examen" constraintName="FK8bs69gq3gmkyvpf3chp4qi7hn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="examen" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-18">
+        <addForeignKeyConstraint baseColumnNames="filiere_id" baseTableName="groupe" constraintName="FK8lyclysqj9d2fyeif4h7vor8b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="filiere" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-19">
+        <addForeignKeyConstraint baseColumnNames="niveau_id" baseTableName="groupe" constraintName="FK9wsg0dyks34s6l5o3bwmf1tsr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="niveau" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-20">
+        <addForeignKeyConstraint baseColumnNames="groupe_id" baseTableName="rel_groupe__examen" constraintName="FKa080w0pymhdnlp7b97hh44xax" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="groupe" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-21">
+        <addForeignKeyConstraint baseColumnNames="niveau_id" baseTableName="etudiant" constraintName="FKinkqcsukebx5jgjwijrekoa91" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="niveau" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-22">
+        <addForeignKeyConstraint baseColumnNames="niveau_id" baseTableName="rel_niveau__filiere" constraintName="FKjodu7l48jifdoi71c7ymlxwv4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="niveau" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-23">
+        <addForeignKeyConstraint baseColumnNames="filiere_id" baseTableName="rel_niveau__filiere" constraintName="FKkypxkmdkf35b3464d1f6vq7pa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="filiere" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-24">
+        <addForeignKeyConstraint baseColumnNames="filiere_id" baseTableName="etudiant" constraintName="FKmph3yyex90twjoxoqkumd4yy9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="filiere" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-25">
+        <addForeignKeyConstraint baseColumnNames="examen_id" baseTableName="rel_examen__salle_examen" constraintName="FKpxa0jkt1onyswt170e6qi1ehb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="examen" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-26">
+        <addForeignKeyConstraint baseColumnNames="groupe_id" baseTableName="etudiant" constraintName="FKrggvc9ohtypv4x85y8fqq4f73" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="groupe" validate="true"/>
+    </changeSet>
+    <changeSet author="lenovo (generated)" id="1702552813940-27">
+        <addForeignKeyConstraint baseColumnNames="salle_examen_id" baseTableName="rel_examen__salle_examen" constraintName="FKsqlej21f7ticvls4x9ibxkkx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="salle_examen" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

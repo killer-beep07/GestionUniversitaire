@@ -179,4 +179,18 @@ public class GroupeResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/{id}/filiere-nom")
+    public ResponseEntity<String> getFiliereNomByGroupeId(@PathVariable Long id) {
+        log.debug("REST request to get Filiere Nom for Groupe : {}", id);
+        String filiereNom = groupeRepository.findFiliereNomByGroupeId(id);
+        return ResponseEntity.ok(filiereNom);
+    }
+
+    @GetMapping("/{id}/niveau-nom")
+    public ResponseEntity<String> getNiveauNomByGroupeId(@PathVariable Long id) {
+        log.debug("REST request to get Niveau Nom for Groupe : {}", id);
+        String niveauNom = groupeRepository.findNiveauNomByGroupeId(id);
+        return ResponseEntity.ok(niveauNom);
+    }
 }

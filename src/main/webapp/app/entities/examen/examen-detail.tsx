@@ -4,14 +4,15 @@ import { Button, Row, Col } from 'reactstrap';
 import { Translate, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT, AUTHORITIES } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntity } from './examen.reducer';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
 export const ExamenDetail = () => {
   const dispatch = useAppDispatch();
-
+  const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
   const { id } = useParams<'id'>();
 
   useEffect(() => {
@@ -27,12 +28,7 @@ export const ExamenDetail = () => {
         </h2>
         <dl className="jh-entity-details">
           <br />
-          {/* <dt>
-            <span id="id">
-              <Translate contentKey="global.field.id">ID</Translate>
-            </span>
-          </dt>
-          <dd>{examenEntity.id}</dd> */}
+
           <dt>
             <span id="nom">
               <Translate contentKey="gestionUniversitaireApp.examen.nom">Nom</Translate>
@@ -78,12 +74,16 @@ export const ExamenDetail = () => {
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/examen/${examenEntity.id}/edit`} replace color="primary">
-          <FontAwesomeIcon icon="pencil-alt" />{' '}
-          <span className="d-none d-md-inline">
-            <Translate contentKey="entity.action.edit">Edit</Translate>
-          </span>
-        </Button>
+        {isAdmin && (
+          <>
+            <Button tag={Link} to={`/examen/${examenEntity.id}/edit`} replace color="primary">
+              <FontAwesomeIcon icon="pencil-alt" />{' '}
+              <span className="d-none d-md-inline">
+                <Translate contentKey="entity.action.edit">Edit</Translate>
+              </span>
+            </Button>
+          </>
+        )}
       </Col>
     </Row>
   );
