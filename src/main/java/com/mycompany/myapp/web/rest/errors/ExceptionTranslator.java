@@ -63,6 +63,18 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
         return handleExceptionInternal((Exception) ex, pdCause, buildHeaders(ex), HttpStatusCode.valueOf(pdCause.getStatus()), request);
     }
 
+    // @Nullable
+    // @Override
+    // protected ResponseEntity<Object> handleExceptionInternal(
+    //     Exception ex,
+    //     @Nullable Object body,
+    //     HttpHeaders headers,
+    //     HttpStatusCode statusCode,
+    //     WebRequest request
+    // ) {
+    //     body = body == null ? wrapAndCustomizeProblem((Throwable) ex, (NativeWebRequest) request) : body;
+    //     return super.handleExceptionInternal(ex, body, headers, statusCode, request);
+    // }
     @Nullable
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
@@ -73,6 +85,13 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
         WebRequest request
     ) {
         body = body == null ? wrapAndCustomizeProblem((Throwable) ex, (NativeWebRequest) request) : body;
+
+        // Check if the status code is 500 (Internal Server Error)
+        if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR) {
+            // Return null to suppress the default handling of HTTP 500 errors
+            return null;
+        }
+
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
 

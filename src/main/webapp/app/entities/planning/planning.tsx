@@ -12,6 +12,10 @@ const MyPDFViewer = () => {
       const lowerCaseFiliereName = filiereName.toLowerCase();
 
       switch (lowerCaseFiliereName) {
+        case 'g2e':
+          alert('Planning de la filiere G2E');
+          setPdfUrl('/G2E.pdf');
+          break;
         case 'isic':
           alert('Planning de la filiere isic');
           setPdfUrl('/pedagogie_2023_fichiers_isic.pdf');
@@ -20,6 +24,7 @@ const MyPDFViewer = () => {
           alert('Planning de la filiere 2ite');
           setPdfUrl('/Programme-2ITE.pdf');
           break;
+
         default:
           alert("Désolé, le planning de cette filière n'existe pas pour le moment !");
           break;
