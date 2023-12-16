@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcomeMessage": "Welcome to our university managment\napplication !",
+    "welcomeMessage": "Welcome to our university management\napplication !",
     "subtitle": "This is your homepage",
     "logged": {
       "message": "You are logged in as {{role}}."

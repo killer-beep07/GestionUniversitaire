@@ -79,6 +79,7 @@ public class SecurityConfiguration {
                     .requestMatchers(mvc.pattern("/management/prometheus")).permitAll()
                     .requestMatchers(mvc.pattern("/management/**")).hasAuthority(AuthoritiesConstants.ADMIN)
                     .requestMatchers(mvc.pattern("/api/groupes/1500/niveau-nom")).permitAll()
+                    .requestMatchers(mvc.pattern("/*.pdf")).permitAll()
             // .requestMatchers(mvc.pattern("/api/etudiants")).hasAuthority(AuthoritiesConstants.ADMIN)
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

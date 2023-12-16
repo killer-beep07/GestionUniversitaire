@@ -322,13 +322,13 @@ export const GroupeUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null} */}
-              {/* <ValidatedField
+              <ValidatedField
                 label={translate('gestionUniversitaireApp.groupe.nom')}
                 id="groupe-nom"
                 name="nom"
                 data-cy="nom"
                 type="text"
-              /> */}
+              />
               {/* <ValidatedField
                 id="groupe-niveau"
                 name="niveau"

@@ -1,6 +1,7 @@
 {
   "generator-jhipster": {
     "applicationType": "monolith",
+    "appsFolders": ["PF-SEMESTRE"],
     "authenticationType": "jwt",
     "baseName": "GestionUniversitaire",
     "buildTool": "maven",
@@ -12,6 +13,7 @@
     "databaseType": "sql",
     "devDatabaseType": "mysql",
     "devServerPort": 9060,
+    "directoryPath": "../",
     "enableGradleEnterprise": null,
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
@@ -25,6 +27,7 @@
     "messageBroker": false,
     "microfrontend": null,
     "microfrontends": [],
+    "monitoring": "no",
     "nativeLanguage": "en",
     "packageName": "com.mycompany.myapp",
     "prodDatabaseType": "mysql",
@@ -32,7 +35,7 @@
     "searchEngine": false,
     "serverPort": null,
     "serverSideOptions": [],
-    "serviceDiscoveryType": false,
+    "serviceDiscoveryType": "no",
     "testFrameworks": [],
     "websocket": false,
     "withAdminUi": true

@@ -15,10 +15,10 @@
             Build properties
             The spring-boot version should match the one managed by https://mvnrepository.com/artifact/tech.jhipster/jhipster-dependencies/${jhipster-dependencies.version}
         -->
-        <maven.version>3.2.5</maven.version>
-        <java.version>21</java.version>
-        <node.version>v20.10.0</node.version>
-        <npm.version>10.2.2</npm.version>
+        <maven.version> 3.9.5</maven.version>
+        <java.version>17</java.version>
+        <node.version>v18.17.1</node.version>
+        <npm.version>10.2.4</npm.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
@@ -287,6 +287,10 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
+                 <configuration>
+        
+        <!-- Autres configurations Jib -->
+    </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -497,8 +501,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                       
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.springframework.boot</groupId>
