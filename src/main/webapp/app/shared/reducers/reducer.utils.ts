@@ -19,6 +19,10 @@ export interface IQueryParams {
   size?: number;
   order?: string;
   search?: string;
+  nom?: string; // Add this line to include the 'nom' property
+  groupe?: string; // Add properties for other search criteria (filiere, niveau, etc.)
+  filiere?: string;
+  niveau?: string;
 }
 /**
  * Useful types for working with actions

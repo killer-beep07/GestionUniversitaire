@@ -4,19 +4,18 @@ import { Button, Table } from 'reactstrap';
 import { Translate, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { ASC, DESC, SORT } from 'app/shared/util/pagination.constants';
+import { ASC, DESC } from 'app/shared/util/pagination.constants';
 import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-
 import { getEntities } from './niveau.reducer';
 
 export const Niveau = () => {
   const dispatch = useAppDispatch();
-
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
+  const [searchTerm, setSearchTerm] = useState('');
 
   const niveauList = useAppSelector(state => state.niveau.entities);
   const loading = useAppSelector(state => state.niveau.loading);
@@ -25,6 +24,7 @@ export const Niveau = () => {
     dispatch(
       getEntities({
         sort: `${sortState.sort},${sortState.order}`,
+        search: searchTerm,
       }),
     );
   };
@@ -39,7 +39,7 @@ export const Niveau = () => {
 
   useEffect(() => {
     sortEntities();
-  }, [sortState.order, sortState.sort]);
+  }, [sortState.order, sortState.sort, searchTerm]);
 
   const sort = p => () => {
     setSortState({
@@ -63,16 +63,35 @@ export const Niveau = () => {
     }
   };
 
+  const filteredNiveauList = niveauList.filter(niveau => {
+    const searchLower = searchTerm.toLowerCase();
+
+    return (
+      niveau.nom.toLowerCase().includes(searchLower) ||
+      // Add more fields as needed
+      niveau.filieres.some(filiere => filiere.nom.toLowerCase().includes(searchLower))
+    );
+  });
+
   return (
     <div>
       <h2 id="niveau-heading" data-cy="NiveauHeading">
         <Translate contentKey="gestionUniversitaireApp.niveau.home.title">Niveaux</Translate>
         <div className="d-flex justify-content-end">
-          <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
+          <div className="me-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="form-control form-control-sm"
+            />
+          </div>
+          <Button className="me-2 btn-sm" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="gestionUniversitaireApp.niveau.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/niveau/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          <Link to="/niveau/new" className="btn btn-primary btn-sm jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
             <Translate contentKey="gestionUniversitaireApp.niveau.home.createLabel">Create new Niveau</Translate>
@@ -80,7 +99,7 @@ export const Niveau = () => {
         </div>
       </h2>
       <div className="table-responsive">
-        {niveauList && niveauList.length > 0 ? (
+        {filteredNiveauList && filteredNiveauList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
@@ -99,11 +118,11 @@ export const Niveau = () => {
               </tr>
             </thead>
             <tbody>
-              {niveauList.map((niveau, i) => (
+              {filteredNiveauList.map((niveau, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
                     <Button tag={Link} to={`/niveau/${niveau.id}`} color="link" size="sm">
-                      {niveau.nom}
+                      {niveau.id}
                     </Button>
                   </td>
                   <td>{niveau.nom}</td>

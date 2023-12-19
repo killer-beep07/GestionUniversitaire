@@ -12,6 +12,7 @@ import { getEntities } from './groupe.reducer';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import { AUTHORITIES } from 'app/config/constants';
 // ... existing imports
+// ... existing imports
 
 export const Groupe = () => {
   const dispatch = useAppDispatch();
@@ -20,8 +21,9 @@ export const Groupe = () => {
   const navigate = useNavigate();
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
-  const [niveauNoms, setNiveauNoms] = useState({}); // State to store niveau names
-  const [filiereNoms, setFiliereNoms] = useState({}); // State to store filiere names
+  const [niveauNoms, setNiveauNoms] = useState({});
+  const [filiereNoms, setFiliereNoms] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
 
   const groupeList = useAppSelector(state => state.groupe.entities);
   const loading = useAppSelector(state => state.groupe.loading);
@@ -30,6 +32,7 @@ export const Groupe = () => {
     dispatch(
       getEntities({
         sort: `${sortState.sort},${sortState.order}`,
+        search: searchTerm, // Pass the search term to the API call
       }),
     );
   };
@@ -44,10 +47,9 @@ export const Groupe = () => {
 
   useEffect(() => {
     sortEntities();
-  }, [sortState.order, sortState.sort]);
+  }, [sortState.order, sortState.sort, searchTerm]);
 
   useEffect(() => {
-    // Fetch niveau and filiere names when groupeList changes
     const fetchNiveauAndFiliereNames = async () => {
       await Promise.all(
         groupeList.map(async groupe => {
@@ -88,11 +90,32 @@ export const Groupe = () => {
     }
   };
 
+  const filteredGroupeList = groupeList.filter(groupe => {
+    const searchLower = searchTerm.toLowerCase();
+
+    return (
+      groupe.nom.toLowerCase().includes(searchLower) ||
+      niveauNoms[groupe.id]?.toLowerCase().includes(searchLower) ||
+      filiereNoms[groupe.id]?.toLowerCase().includes(searchLower) ||
+      (groupe.examen && groupe.examen.some(exam => exam.nom.toLowerCase().includes(searchLower) /* Add more conditions as needed */))
+      // Add more fields as needed
+    );
+  });
+
   return (
     <div>
       <h2 id="groupe-heading" data-cy="GroupeHeading">
         <Translate contentKey="gestionUniversitaireApp.groupe.home.title">Groupes</Translate>
         <div className="d-flex justify-content-end">
+          <div className="me-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="form-control form-control-sm"
+            />
+          </div>
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="gestionUniversitaireApp.groupe.home.refreshListLabel">Refresh List</Translate>
@@ -109,7 +132,7 @@ export const Groupe = () => {
         </div>
       </h2>
       <div className="table-responsive">
-        {groupeList && groupeList.length > 0 ? (
+        {filteredGroupeList && filteredGroupeList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
@@ -134,7 +157,7 @@ export const Groupe = () => {
               </tr>
             </thead>
             <tbody>
-              {groupeList.map((groupe, i) => (
+              {filteredGroupeList.map((groupe, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
                     <Button tag={Link} to={`/groupe/${groupe.id}`} color="link" size="sm">

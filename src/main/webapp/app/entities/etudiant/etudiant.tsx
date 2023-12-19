@@ -4,23 +4,23 @@ import { Button, Table } from 'reactstrap';
 import { Translate, TextFormat, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
-import { ASC, DESC, SORT } from 'app/shared/util/pagination.constants';
+import { ASC, DESC } from 'app/shared/util/pagination.constants';
 import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-
 import { getEntities } from './etudiant.reducer';
+import { APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
 export const Etudiant = () => {
   const dispatch = useAppDispatch();
-
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
-  const [niveauNoms, setNiveauNoms] = useState({}); // State to store niveau names
+  const [niveauNoms, setNiveauNoms] = useState({});
   const [filiereNoms, setFiliereNoms] = useState({});
-  const [groupeNoms, setGroupeNoms] = useState({}); // State to store groupe names
+  const [groupeNoms, setGroupeNoms] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
+
   const etudiantList = useAppSelector(state => state.etudiant.entities);
   const loading = useAppSelector(state => state.etudiant.loading);
 
@@ -28,6 +28,7 @@ export const Etudiant = () => {
     dispatch(
       getEntities({
         sort: `${sortState.sort},${sortState.order}`,
+        search: searchTerm,
       }),
     );
   };
@@ -43,8 +44,8 @@ export const Etudiant = () => {
   useEffect(() => {
     sortEntities();
   }, [sortState.order, sortState.sort]);
+
   useEffect(() => {
-    // Fetch niveau and filiere names when groupeList changes
     const fetchNiveauAndFiliereandGroupeNames = async () => {
       await Promise.all(
         etudiantList.map(async etudiant => {
@@ -63,13 +64,6 @@ export const Etudiant = () => {
 
     fetchNiveauAndFiliereandGroupeNames();
   }, [etudiantList]);
-  const sort = p => () => {
-    setSortState({
-      ...sortState,
-      order: sortState.order === ASC ? DESC : ASC,
-      sort: p,
-    });
-  };
 
   const handleSyncList = () => {
     sortEntities();
@@ -84,17 +78,51 @@ export const Etudiant = () => {
       return order === ASC ? faSortUp : faSortDown;
     }
   };
+  const sort = (p: string) => () => {
+    setSortState({
+      ...sortState,
+      order: sortState.order === ASC ? DESC : ASC,
+      sort: p,
+    });
+  };
 
+  const filteredEtudiantList = etudiantList.filter(etudiant => {
+    const searchLower = searchTerm.toLowerCase();
+
+    return (
+      etudiant.nom.toLowerCase().includes(searchLower) ||
+      etudiant.prenom.toLowerCase().includes(searchLower) ||
+      (etudiant.dateNaissance && etudiant.dateNaissance.toLowerCase().includes(searchLower)) ||
+      etudiant.lieuNaissance.toLowerCase().includes(searchLower) ||
+      etudiant.cne.toLowerCase().includes(searchLower) ||
+      etudiant.cni.toLowerCase().includes(searchLower) ||
+      etudiant.mail.toLowerCase().includes(searchLower) ||
+      etudiant.gsm.toLowerCase().includes(searchLower) ||
+      groupeNoms[etudiant.id].toLowerCase().includes(searchLower) ||
+      niveauNoms[etudiant.id].toLowerCase().includes(searchLower) ||
+      filiereNoms[etudiant.id].toLowerCase().includes(searchLower)
+      // Add more fields as needed
+    );
+  });
   return (
     <div>
       <h2 id="etudiant-heading" data-cy="EtudiantHeading">
         <Translate contentKey="gestionUniversitaireApp.etudiant.home.title">Etudiants</Translate>
-        <div className="d-flex justify-content-end">
-          <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
+        <div className="d-flex justify-content-end mb-2">
+          <div className="me-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="form-control form-control-sm"
+            />
+          </div>
+          <Button className="me-2 btn-sm" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="gestionUniversitaireApp.etudiant.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/etudiant/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          <Link to="/etudiant/new" className="btn btn-primary btn-sm jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
             <Translate contentKey="gestionUniversitaireApp.etudiant.home.createLabel">Create new Etudiant</Translate>
@@ -102,7 +130,7 @@ export const Etudiant = () => {
         </div>
       </h2>
       <div className="table-responsive">
-        {etudiantList && etudiantList.length > 0 ? (
+        {filteredEtudiantList && filteredEtudiantList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
@@ -155,7 +183,7 @@ export const Etudiant = () => {
               </tr>
             </thead>
             <tbody>
-              {etudiantList.map((etudiant, i) => (
+              {filteredEtudiantList.map((etudiant, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
                     <Button tag={Link} to={`/etudiant/${etudiant.id}`} color="link" size="sm">
@@ -192,7 +220,7 @@ export const Etudiant = () => {
                         </span>
                       </Button>
                       <Button
-                        onClick={() => (location.href = `/etudiant/${etudiant.id}/delete`)}
+                        onClick={() => (window.location.href = `/etudiant/${etudiant.id}/delete`)}
                         color="danger"
                         size="sm"
                         data-cy="entityDeleteButton"
