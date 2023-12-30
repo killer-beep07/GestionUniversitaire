@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   gestionuniversitaire:
     image: gestionuniversitaire
@@ -18,9 +20,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 40
-    depends_on:
-      gestionuniversitaire-mysql:
-        condition: service_healthy
+
   gestionuniversitaire-mysql:
     image: mysql:8.2.0
     volumes:
@@ -38,3 +38,18 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:10.2.1-community
+    environment:
+      - SONAR_FORCEAUTHENTICATION=false
+    ports:
+      - '127.0.0.1:9000:9000'
+      - '127.0.0.1:9001:9000'
+
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000']
+      interval: 30s
+      timeout: 10s
+      retries: 5

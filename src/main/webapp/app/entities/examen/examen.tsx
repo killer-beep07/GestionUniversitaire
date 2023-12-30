@@ -134,7 +134,7 @@ export const Examen = () => {
                     {examen.salleExamen
                       ? examen.salleExamen.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/salle-examen/${val.id}`}>{val.nom}</Link>
+                            {val.nom}
                             {j === examen.salleExamen.length - 1 ? '' : ', '}
                           </span>
                         ))

@@ -54,9 +54,10 @@ const EntitiesMenuUser = () => {
       <MenuItem icon={faClipboardCheck} to="/examen">
         <Translate contentKey="global.menu.entities.examen" />
       </MenuItem>
-      <MenuItem icon={faBookOpen} to="/planning">
+      <MenuItem icon={faBookOpen} to="/planning-semestre">
         <Translate contentKey="global.menu.entities.planning" />
       </MenuItem>
+
       <MenuItem icon={faCalendarAlt} to="/Calendrier">
         <Translate contentKey="global.menu.entities.calendrier" />
       </MenuItem>
