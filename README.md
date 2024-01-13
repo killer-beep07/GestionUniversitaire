@@ -61,7 +61,8 @@ Un système de gestion des étudiants et des examens universitaires simplifie la
 ## Conception
 
 ### Diagramme de classe
-![WhatsApp Image 2024-01-13 at 23 28 55_9f7fb855](https://github.com/killer-beep07/PF-JEE/assets/130712993/4dfe6b39-d918-4cf5-81aa-936ddf249821)
+![WhatsApp Image 2024-01-13 at 23 28 55_6b0e943e](https://github.com/killer-beep07/PF-JEE/assets/130712993/f085acc1-e2a5-4e1d-86c0-6b631a5f7652)
+
 
 
 ### Diagramme de cas d'utilisation
