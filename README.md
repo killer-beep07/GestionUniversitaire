@@ -59,7 +59,14 @@ Le projet sera organisé de manière à tirer parti de :
 Un système de gestion des étudiants et des examens universitaires simplifie la planification des examens en tenant compte des groupes, des filières, des niveaux, des salles d'examen, la gestion des inscriptions, améliorant ainsi l'efficacité de l'administration universitaire. La fonction de notation peut être gérée manuellement ou en utilisant d'autres outils en dehors de ce système, selon les besoins de l'université.
 
 ## Conception
-<img width="383" alt="image" src="https://github.com/killer-beep07/PF-JEE/assets/130712993/3633966d-6605-49c7-86fd-5961fd4d66b1">
+
+### Diagramme de classe
+![WhatsApp Image 2024-01-13 at 23 28 55_9f7fb855](https://github.com/killer-beep07/PF-JEE/assets/130712993/4dfe6b39-d918-4cf5-81aa-936ddf249821)
+
+
+### Diagramme de cas d'utilisation
+<img width="514" alt="image" src="https://github.com/killer-beep07/PF-JEE/assets/130712993/bb948d21-0607-4992-8e38-9daeb305c189">
+
 
 ## Interface administrateur
 
