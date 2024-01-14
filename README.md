@@ -117,8 +117,8 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 2. **Lancement de l'Application avec Maven**:
    - Ouvrez un terminal dans le répertoire du projet.
    - Exécutez les commandes : `mvn clean install`.  Pour preparez le lancement du projet.
-                              `mvn spring-boot:run` .  Pour demarrez back-end.
-                              `npm start`. Pour demarrer front-end
+                              -`mvn spring-boot:run` .  Pour demarrez back-end.
+                              -`npm start`. Pour demarrer front-end
 
 3. **Accéder à l'Application**:
    - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
