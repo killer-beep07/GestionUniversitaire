@@ -121,7 +121,7 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
                               -`npm start`. Pour demarrer front-end
 
 3. **Accéder à l'Application**:
-   - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
+   - Ouvrez un navigateur web et accédez à [http://localhost:9000](http://localhost:9000).
 
 ### Exécution avec Docker
 
