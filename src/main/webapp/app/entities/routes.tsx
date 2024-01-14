@@ -14,6 +14,8 @@ import Calendrier from './Calendrier';
 import { AUTHORITIES } from 'app/config/constants';
 import { useAppSelector } from 'app/config/store';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import ExamenCalendar from './examen-calendar';
+
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 // const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
 export default () => {
@@ -34,6 +36,7 @@ export default () => {
         <Route path="planning-semestre/*" element={<Planning />} />
 
         <Route path="calendrier/*" element={<Calendrier />} />
+        <Route path="examen-calendar/*" element={<ExamenCalendar />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

@@ -27,4 +27,7 @@ public interface ExamenRepository extends ExamenRepositoryWithBagRelationships, 
     default Page<Examen> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
+
+    @Query("SELECT e.nom, e.date, e.heureDebut, e.heureFin, se.nom FROM Examen e LEFT JOIN e.salleExamen se")
+    List<Object[]> findAllExamenDetails();
 }

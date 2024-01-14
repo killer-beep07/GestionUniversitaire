@@ -13,6 +13,7 @@ import {
   faClipboardCheck,
   faGraduationCap,
   faUser,
+  faTasks,
 } from '@fortawesome/free-solid-svg-icons';
 
 const EntitiesMenuAdmin = () => {
@@ -57,7 +58,9 @@ const EntitiesMenuUser = () => {
       <MenuItem icon={faBookOpen} to="/planning-semestre">
         <Translate contentKey="global.menu.entities.planning" />
       </MenuItem>
-
+      <MenuItem icon={faTasks} to="/examen-calendar">
+        Examen Calendar
+      </MenuItem>
       <MenuItem icon={faCalendarAlt} to="/Calendrier">
         <Translate contentKey="global.menu.entities.calendrier" />
       </MenuItem>

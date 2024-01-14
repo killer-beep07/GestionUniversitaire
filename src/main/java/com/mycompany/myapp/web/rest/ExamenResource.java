@@ -188,4 +188,9 @@ public class ExamenResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/examens/details")
+    public List<Object[]> getAllExamenDetails() {
+        return examenRepository.findAllExamenDetails();
+    }
 }
