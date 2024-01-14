@@ -116,7 +116,9 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 2. **Lancement de l'Application avec Maven**:
    - Ouvrez un terminal dans le répertoire du projet.
-   - Exécutez la commande : `mvn spring-boot:run`.
+   - Exécutez les commandes : `mvn clean install`.  Pour preparez le lancement du projet.
+                              `mvn spring-boot:run` .  Pour demarrez back-end.
+                              `npm start`. Pour demarrer front-end
 
 3. **Accéder à l'Application**:
    - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
@@ -124,10 +126,10 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 ### Exécution avec Docker
 
 1. **Téléchargement de l'Image Docker depuis Docker Hub**:
-   - Exécutez la commande suivante dans votre terminal : `docker pull killerbeep07/projet_gestionuniversitaire`.
+   - Exécutez la commande suivante dans votre terminal : `docker pull killerbeep07/gestionuniversitaire`.
 
 2. **Lancement du Conteneur Docker**:
-   - Exécutez la commande suivante pour lancer le conteneur Docker : `docker run -p 8080:8080 killerbeep07/projet_gestionuniversitaire`.
+   - Exécutez la commande suivante pour lancer le conteneur Docker : `docker run -p 8080:8080 killerbeep07/gestionuniversitaire`.
 
 3. **Accéder à l'Application**:
    - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
