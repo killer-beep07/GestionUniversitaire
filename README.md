@@ -57,6 +57,17 @@ Le projet sera organisé de manière à tirer parti de :
 ## Utilité
 
 Un système de gestion des étudiants et des examens universitaires simplifie la planification des examens en tenant compte des groupes, des filières, des niveaux, des salles d'examen, la gestion des inscriptions, améliorant ainsi l'efficacité de l'administration universitaire. La fonction de notation peut être gérée manuellement ou en utilisant d'autres outils en dehors de ce système, selon les besoins de l'université.
+## Intégration du Calendrier React
+
+Nous avons également mis en place un module de calendrier basé sur React pour une visualisation pratique des examens programmés. Le calendrier affiche les informations importantes sur chaque examen, telles que le nom, la date, l'heure et d'autres détails pertinents.
+
+Pour intégrer le calendrier dans votre propre application, assurez-vous d'inclure les composants nécessaires de React Calendar et de les configurer selon vos besoins. Vous pouvez trouver le code associé dans le répertoire `src/main/webapp/app/calendar` de ce projet.
+
+## Contribution
+
+Nous accueillons toute contribution pour améliorer le système de gestion des étudiants et des examens. Si vous souhaitez ajouter des fonctionnalités, résoudre des problèmes ou améliorer la documentation, n'hésitez pas à créer une demande de tirage.
+
+Merci de contribuer !
 
 ## Conception
 
@@ -77,6 +88,13 @@ Un système de gestion des étudiants et des examens universitaires simplifie la
 ## Interface étudiant
 
 [Capture d'écran de l'interface étudiant](https://github.com/killer-beep07/PF-JEE/assets/130712993/eb3d0903-6bef-4880-a2a9-eea72da3964d)
+
+## React calendar
+
+
+https://github.com/killer-beep07/PF-JEE/assets/130712993/ca8b1500-edcc-480e-a9db-a7eaea0c30c1
+
+
 
 ## Comment Exécuter le Projet
 
