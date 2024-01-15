@@ -20,6 +20,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 40
+    depends_on:
+      gestionuniversitaire-mysql:
+        condition: service_healthy
 
   gestionuniversitaire-mysql:
     image: killerbeep07/gestionuniversitaire:mysql-8.2.0
