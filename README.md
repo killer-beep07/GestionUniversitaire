@@ -104,7 +104,8 @@ L'intégration de SonarQube Cloud a été essentielle pour évaluer la qualité 
 
 - **Sécurité du Code** : La sécurité du code est cruciale pour prévenir les vulnérabilités et assurer la protection des données. Un score élevé dans cette catégorie indique un code résilient face aux menaces potentielles.
 
-![Rapport SonarQube](./images/sonarqube_report.png)
+![image-0AEN13C0W-transformed](https://github.com/killer-beep07/GestionUniversitaire/assets/130712993/59b30102-9875-4262-b7ec-0d98855173f6)
+
 
 Ces scores ne se contentent pas d'évaluer la qualité du code, mais ils orientent également nos efforts d'amélioration continue. Les recommandations de SonarQube nous guident dans l'optimisation du code, renforçant ainsi la stabilité, la sécurité et la maintenabilité de notre système de gestion des étudiants et des examens universitaires.
 
