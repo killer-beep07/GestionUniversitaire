@@ -94,6 +94,19 @@ Merci de contribuer !
 
 https://github.com/killer-beep07/PF-JEE/assets/130712993/ca8b1500-edcc-480e-a9db-a7eaea0c30c1
 
+## Analyse du Code avec SonarQube
+
+L'intégration de SonarQube Cloud a été essentielle pour évaluer la qualité globale de notre code source. Les résultats de cette analyse fournissent un aperçu détaillé des différents aspects du code, soulignant à la fois ses forces et ses zones d'amélioration. Voici quelques points saillants de cette évaluation :
+
+- **Maintenabilité du Code** : Ce score mesure la facilité avec laquelle le code peut être compris, modifié et étendu tout en préservant sa qualité. Un score élevé témoigne d'une base de code robuste et adaptable.
+
+- **Fiabilité du Code** : Cette évaluation identifie la stabilité et la prévisibilité du code en détectant d'éventuels bugs, erreurs et vulnérabilités. Un score élevé garantit une exécution fiable du logiciel.
+
+- **Sécurité du Code** : La sécurité du code est cruciale pour prévenir les vulnérabilités et assurer la protection des données. Un score élevé dans cette catégorie indique un code résilient face aux menaces potentielles.
+
+![Rapport SonarQube](./images/sonarqube_report.png)
+
+Ces scores ne se contentent pas d'évaluer la qualité du code, mais ils orientent également nos efforts d'amélioration continue. Les recommandations de SonarQube nous guident dans l'optimisation du code, renforçant ainsi la stabilité, la sécurité et la maintenabilité de notre système de gestion des étudiants et des examens universitaires.
 
 
 ## Comment Exécuter le Projet
@@ -116,18 +129,20 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 2. **Lancement de l'Application avec Maven**:
    - Ouvrez un terminal dans le répertoire du projet.
-   - Exécutez la commande : `mvn spring-boot:run`.
+   - Exécutez les commandes : `mvn clean install`.  Pour preparez le lancement du projet.
+                              -`mvn spring-boot:run` .  Pour demarrez back-end.
+                              -`npm start`. Pour demarrer front-end
 
 3. **Accéder à l'Application**:
-   - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
+   - Ouvrez un navigateur web et accédez à [http://localhost:9000](http://localhost:9000).
 
 ### Exécution avec Docker
 
 1. **Téléchargement de l'Image Docker depuis Docker Hub**:
-   - Exécutez la commande suivante dans votre terminal : `docker pull killerbeep07/projet_gestionuniversitaire`.
+   - Exécutez la commande suivante dans votre terminal : `docker pull killerbeep07/gestionuniversitaire`.
 
 2. **Lancement du Conteneur Docker**:
-   - Exécutez la commande suivante pour lancer le conteneur Docker : `docker run -p 8080:8080 killerbeep07/projet_gestionuniversitaire`.
+   - Exécutez la commande suivante pour lancer le conteneur Docker : `docker run -p 8080:8080 killerbeep07/gestionuniversitaire`.
 
 3. **Accéder à l'Application**:
    - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
