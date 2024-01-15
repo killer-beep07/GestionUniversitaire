@@ -94,6 +94,19 @@ Merci de contribuer !
 
 https://github.com/killer-beep07/PF-JEE/assets/130712993/ca8b1500-edcc-480e-a9db-a7eaea0c30c1
 
+## Analyse du Code avec SonarQube
+
+L'intégration de SonarQube Cloud a été essentielle pour évaluer la qualité globale de notre code source. Les résultats de cette analyse fournissent un aperçu détaillé des différents aspects du code, soulignant à la fois ses forces et ses zones d'amélioration. Voici quelques points saillants de cette évaluation :
+
+- **Maintenabilité du Code** : Ce score mesure la facilité avec laquelle le code peut être compris, modifié et étendu tout en préservant sa qualité. Un score élevé témoigne d'une base de code robuste et adaptable.
+
+- **Fiabilité du Code** : Cette évaluation identifie la stabilité et la prévisibilité du code en détectant d'éventuels bugs, erreurs et vulnérabilités. Un score élevé garantit une exécution fiable du logiciel.
+
+- **Sécurité du Code** : La sécurité du code est cruciale pour prévenir les vulnérabilités et assurer la protection des données. Un score élevé dans cette catégorie indique un code résilient face aux menaces potentielles.
+
+![Rapport SonarQube](./images/sonarqube_report.png)
+
+Ces scores ne se contentent pas d'évaluer la qualité du code, mais ils orientent également nos efforts d'amélioration continue. Les recommandations de SonarQube nous guident dans l'optimisation du code, renforçant ainsi la stabilité, la sécurité et la maintenabilité de notre système de gestion des étudiants et des examens universitaires.
 
 
 ## Comment Exécuter le Projet
