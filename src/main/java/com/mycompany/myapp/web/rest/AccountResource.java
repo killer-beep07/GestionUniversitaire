@@ -86,6 +86,7 @@ public class AccountResource {
      */
     @GetMapping("/account")
     public AdminUserDTO getAccount() {
+        log.debug("REST request to get current user account");
         return userService
             .getUserWithAuthorities()
             .map(AdminUserDTO::new)

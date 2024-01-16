@@ -59,6 +59,7 @@ module.exports = async options =>
           changeOrigin: options.tls,
         },
       ],
+
       https: options.tls,
       historyApiFallback: true,
     },
