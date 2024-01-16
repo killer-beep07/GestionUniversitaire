@@ -80,6 +80,12 @@ Merci de contribuer !
 ### Diagramme de cas d'utilisation
 <img width="514" alt="image" src="https://github.com/killer-beep07/PF-JEE/assets/130712993/bb948d21-0607-4992-8e38-9daeb305c189">
 
+## Compte Responsable administratif:
+UserName:admin <br>
+Password: admin
+## Compte Etudiant:
+UserName:user <br>
+Password: user
 
 ## Interface administrateur
 
