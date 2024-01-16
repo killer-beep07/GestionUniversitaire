@@ -83,7 +83,11 @@ Merci de contribuer !
 
 ## Interface administrateur
 
-[Capture d'écran de l'interface administrateur](https://github.com/killer-beep07/PF-JEE/assets/130712993/b37bcd11-647b-4bf9-890c-a388fdb6a345)
+
+https://github.com/killer-beep07/GestionUniversitaire/assets/130712993/a6c30bc0-9bbd-4fd7-b9d6-5a527f6e0cfa
+
+
+
 
 ## Interface étudiant
 
