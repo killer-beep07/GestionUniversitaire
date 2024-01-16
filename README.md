@@ -134,24 +134,19 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 1. **Configuration de la Base de Données MySQL**:
    - Assurez-vous d'avoir une instance MySQL en cours d'exécution.
-   - Modifiez les détails de connexion dans le fichier `src/main/resources/application.properties` en conséquence.
-
+     
 2. **Lancement de l'Application avec Maven**:
    - Ouvrez un terminal dans le répertoire du projet.
    - Exécutez les commandes : `mvn clean install`.  Pour preparez le lancement du projet.
-                              -`mvn spring-boot:run` .  Pour demarrez back-end.
-                              -`npm start`. Pour demarrer front-end
+   -`mvn spring-boot:run` .  Pour demarrer le projet.
 
 3. **Accéder à l'Application**:
-   - Ouvrez un navigateur web et accédez à [http://localhost:9000](http://localhost:9000).
+   - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
 
 ### Exécution avec Docker
 
-1. **Téléchargement de l'Image Docker depuis Docker Hub**:
-   - Exécutez la commande suivante dans votre terminal : `docker pull killerbeep07/gestionuniversitaire`.
+1. **Lancement du projet**:
+   - Exécutez la commande suivante dans votre terminal pour lancer le conteneur Docker : `docker-compose up`.
 
-2. **Lancement du Conteneur Docker**:
-   - Exécutez la commande suivante pour lancer le conteneur Docker : `docker run -p 8080:8080 killerbeep07/gestionuniversitaire`.
-
-3. **Accéder à l'Application**:
+2. **Accéder à l'Application**:
    - Ouvrez un navigateur web et accédez à [http://localhost:8080](http://localhost:8080).
