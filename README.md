@@ -4,7 +4,6 @@
 
 Ce projet vise à développer un système complet de gestion des étudiants et des examens universitaires. L'objectif principal est de mettre en place une application qui facilite la gestion des informations des étudiants, la planification des groupes, la gestion des filières, des niveaux d'études, des salles d'examen, et la gestion des examens.
 
-## Fonctionnalités d'administrateur
 
 ## Technologies Utilisées
 
